@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#060f2e">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRSAV — Total Rental Solutions</title>
+
+<!-- ── Favicons ─────────────────────────────────────────────── -->
+<link rel="icon" type="image/png" sizes="32x32" href="/trsav/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/trsav/icons/favicon-16x16.png">
+<link rel="shortcut icon" href="/trsav/icons/favicon-32x32.png">
+<!-- ── PWA Manifest ──────────────────────────────────────────── -->
+<link rel="manifest" href="/trsav/manifest.json">
+<!-- ── Theme & Status Bar ────────────────────────────────────── -->
+<meta name="theme-color" content="#060f2e">
+<meta name="background-color" content="#060f2e">
+<!-- ── iOS Safari PWA ────────────────────────────────────────── -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TRSAV">
+<link rel="apple-touch-icon" href="/trsav/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/trsav/icons/icon-152x152.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/trsav/icons/icon-192x192.png">
+<!-- ── Windows / Android ─────────────────────────────────────── -->
+<meta name="application-name" content="TRSAV">
+<meta name="msapplication-TileColor" content="#060f2e">
+<meta name="msapplication-TileImage" content="/trsav/icons/icon-144x144.png">
+<meta name="msapplication-config" content="none">
+<!-- ── SEO & Open Graph ──────────────────────────────────────── -->
+<meta name="description" content="Nationwide AV & Technology Rentals — delivered anywhere in the US within 24 hours. Trade shows, corporate meetings, event production, pharma events.">
+<meta property="og:title" content="TRSAV — Total Rental Solutions">
+<meta property="og:description" content="Premium audio, video and display technology delivered nationwide within 24 hours.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://johnlaz.github.io/trsav/">
+<meta property="og:image" content="https://johnlaz.github.io/trsav/icons/icon-512x512.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TRSAV — Total Rental Solutions">
+<meta name="twitter:description" content="Premium AV & technology rentals delivered nationwide within 24 hours.">
+<!-- ─────────────────────────────────────────────────────────── -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Figtree:wght@300;400;500;600;700;900&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Figtree:wght@300;400;500;600;700;900&display=swap"></noscript>
+<style>
+:root {
+  --blue:       #1a6fff;
+  --blue-bright:#4d8fff;
+  --blue-glow:  #0a3aff;
+  --blue-deep:  #060f2e;
+  --blue-mid:   #0a1a4a;
+  --blue-card:  #0d1f56;
+  --blue-border:rgba(26,111,255,0.22);
+  --white:      #ffffff;
+  --cream:      #e8eeff;
+  --mid:        #6b7db3;
+  --dim:        rgba(255,255,255,0.45);
+  --dimmest:    rgba(255,255,255,0.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Figtree',system-ui,-apple-system,sans-serif;
+  background:#060f2e;
+  background:var(--blue-deep);
+  color:#ffffff;
+  color:var(--white);
+  overflow-x:hidden;
+  font-size:16px;
+  line-height:1.6;
+}
+h1,h2,h3{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;letter-spacing:0.02em;line-height:1.0}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;object-fit:cover}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 56px;
+  transition:all 0.4s;
+}
+nav.scrolled{
+  background:rgba(6,15,46,0.92);
+  backdrop-filter:blur(20px);
+  padding:14px 56px;
+  border-bottom:1px solid var(--blue-border);
+  box-shadow:0 4px 40px rgba(0,0,0,0.5);
+}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{
+  width:36px;height:36px;border-radius:8px;
+  background:linear-gradient(135deg,var(--blue),var(--blue-glow));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Figtree',sans-serif;font-weight:900;font-size:16px;
+  box-shadow:0 0 20px rgba(26,111,255,0.5);
+}
+.logo-text{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.1em}
+.logo-text span{color:var(--blue-bright)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--dim);transition:color 0.2s}
+.nav-links a:hover{color:#fff}
+.nav-phone{font-size:13px;font-weight:600;color:var(--blue-bright);letter-spacing:0.02em}
+.nav-cta{
+  background:var(--blue);color:#fff;
+  padding:10px 24px;border-radius:6px;
+  font-size:14px;font-weight:600;
+  transition:all 0.2s;
+  box-shadow:0 0 20px rgba(26,111,255,0.3);
+}
+.nav-cta:hover{background:var(--blue-bright);box-shadow:0 0 30px rgba(26,111,255,0.5);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform 0.3s,opacity 0.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:199;
+  background:var(--blue-deep);padding:90px 32px 48px;
+  flex-direction:column;gap:28px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:0.06em;color:var(--dim);transition:color 0.2s}
+.mobile-menu a:hover{color:#fff}
+.mob-cta{
+  display:inline-block;background:var(--blue);color:#fff !important;
+  padding:14px 32px;border-radius:8px;font-family:'Figtree',sans-serif !important;
+  font-size:16px !important;font-weight:600;margin-top:8px;
+}
+.mob-phone-txt{font-size:14px;color:var(--mid);margin-top:auto}
+
+/* HERO */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 56px 80px;
+  overflow:hidden;
+}
+.hero-img{position:absolute;inset:0;z-index:0}
+.hero-img img{
+  width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  filter:brightness(0.35) saturate(0.8);
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to top, var(--blue-deep) 0%, rgba(6,15,46,0.7) 40%, rgba(6,15,46,0.1) 80%),
+    linear-gradient(120deg, rgba(26,111,255,0.15) 0%, transparent 60%);
+}
+.hero-content{position:relative;z-index:2}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(26,111,255,0.4);
+  border-radius:100px;padding:6px 18px;
+  font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--blue-bright);background:rgba(26,111,255,0.1);
+  margin-bottom:28px;backdrop-filter:blur(4px);
+}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--blue-bright);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{
+  font-size:clamp(60px,9vw,130px);
+  line-height:0.93;
+  margin-bottom:32px;
+  max-width:1000px;
+  text-shadow:0 2px 40px rgba(0,0,0,0.5);
+}
+.hero h1 .blue{color:var(--blue-bright)}
+.hero h1 .outline{
+  -webkit-text-stroke:2px rgba(255,255,255,0.4);
+  color:transparent;
+}
+.hero-sub{
+  font-size:clamp(15px,1.8vw,19px);
+  font-weight:300;
+  color:rgba(255,255,255,0.6);
+  max-width:560px;
+  line-height:1.7;
+  margin-bottom:44px;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:80px}
+.btn-blue{
+  background:var(--blue);color:#fff;
+  padding:15px 34px;border-radius:8px;
+  font-size:15px;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;
+  box-shadow:0 0 30px rgba(26,111,255,0.4);
+  transition:all 0.2s;
+}
+.btn-blue:hover{background:var(--blue-bright);transform:translateY(-2px);box-shadow:0 4px 40px rgba(26,111,255,0.6)}
+.btn-ghost{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.18);
+  color:#fff;padding:15px 34px;border-radius:8px;
+  font-size:15px;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;
+  backdrop-filter:blur(4px);
+  transition:all 0.2s;
+}
+.btn-ghost:hover{background:rgba(255,255,255,0.12);transform:translateY(-2px)}
+.hero-stats{
+  display:flex;gap:0;
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;overflow:hidden;
+  backdrop-filter:blur(12px);
+  background:rgba(6,15,46,0.5);
+  width:fit-content;flex-wrap:wrap;
+}
+.hero-stat{
+  padding:22px 36px;
+  border-right:1px solid rgba(255,255,255,0.1);
+}
+.hero-stat:last-child{border-right:none}
+.hero-stat-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:42px;letter-spacing:0.02em;line-height:1;color:#fff;
+}
+.hero-stat-num .blue{color:var(--blue-bright)}
+.hero-stat-label{font-size:12px;color:var(--mid);margin-top:4px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase}
+.hero-phone{
+  position:absolute;top:130px;right:56px;z-index:2;
+  display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(16px);
+  border-radius:100px;padding:10px 20px 10px 10px;
+  transition:border-color 0.2s;
+}
+.hero-phone:hover{border-color:var(--blue-border)}
+.phone-orb{
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--blue-glow));
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  box-shadow:0 0 14px rgba(26,111,255,0.5);
+}
+.hero-phone span{font-size:14px;font-weight:600}
+
+/* MARQUEE */
+.marquee-wrap{background:var(--blue);padding:13px 0;overflow:hidden}
+.marquee-track{display:flex;animation:scroll 30s linear infinite;white-space:nowrap}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{
+  display:inline-flex;align-items:center;gap:18px;padding:0 28px;
+  font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:0.12em;color:rgba(255,255,255,0.8);
+}
+.marquee-item .sep{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.4)}
+
+/* SECTIONS */
+section{padding:110px 56px}
+.label{
+  font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--blue-bright);display:flex;align-items:center;gap:10px;margin-bottom:18px;
+}
+.label::before{content:'';width:20px;height:2px;background:var(--blue-bright)}
+.sec-title{font-size:clamp(38px,5.5vw,68px);line-height:0.96;max-width:700px}
+.sec-title .blue{color:var(--blue-bright)}
+.sec-body{font-size:17px;font-weight:300;color:var(--dim);max-width:500px;line-height:1.75;margin-top:18px}
+
+/* PHOTO STRIP */
+.feature-strip{background:var(--blue-mid);padding:0;overflow:hidden}
+.strip-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:460px}
+.strip-cell{position:relative;overflow:hidden;cursor:pointer}
+.strip-cell img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.6s ease,filter 0.4s;
+  filter:brightness(0.6) saturate(0.9);
+}
+.strip-cell:hover img{transform:scale(1.04);filter:brightness(0.75) saturate(1.1)}
+.strip-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(6,15,46,0.9) 0%, transparent 55%);
+  pointer-events:none;
+}
+.strip-label{position:absolute;bottom:0;left:0;right:0;padding:28px 28px 32px}
+.strip-cat{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-bright);margin-bottom:8px}
+.strip-label h3{font-size:clamp(22px,2.8vw,32px);line-height:1.05}
+.strip-label p{font-size:13px;color:var(--dim);margin-top:6px;max-width:280px;font-weight:300}
+.strip-cell+.strip-cell{border-left:1px solid rgba(255,255,255,0.07)}
+
+/* SERVICES */
+.services-sec{background:var(--blue-deep)}
+.services-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;flex-wrap:wrap;gap:20px}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;background:rgba(255,255,255,0.04);border-radius:18px;overflow:hidden}
+.svc-card{
+  background:var(--blue-mid);padding:48px 44px 44px;
+  position:relative;overflow:hidden;cursor:pointer;transition:background 0.25s;
+}
+.svc-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--blue-glow));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.35s;
+}
+.svc-card:hover{background:#0e2265}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-num{
+  font-family:'Bebas Neue',sans-serif;font-size:60px;
+  color:rgba(26,111,255,0.12);position:absolute;top:20px;right:32px;line-height:1;transition:color 0.3s;
+}
+.svc-card:hover .svc-num{color:rgba(26,111,255,0.22)}
+.svc-photo{width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:28px;transition:transform 0.4s}
+.svc-card:hover .svc-photo{transform:scale(1.02)}
+.svc-icon{font-size:32px;margin-bottom:16px;display:block}
+.svc-card h3{font-size:clamp(24px,3vw,36px);margin-bottom:12px}
+.svc-card p{font-size:14px;color:var(--dim);line-height:1.7;font-weight:300;max-width:400px}
+.svc-link{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;font-weight:600;color:var(--blue-bright);transition:gap 0.2s}
+.svc-card:hover .svc-link{gap:10px}
+
+/* EQUIPMENT */
+.equip-sec{background:var(--blue-mid)}
+.equip-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:20px}
+.equip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.equip-card{
+  background:var(--blue-deep);border:1px solid rgba(26,111,255,0.12);
+  border-radius:14px;overflow:hidden;cursor:pointer;
+  transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;
+}
+.equip-card:hover{border-color:rgba(26,111,255,0.45);transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,111,255,0.15)}
+.equip-photo{width:100%;height:160px;object-fit:cover;filter:brightness(0.75) saturate(0.8);transition:filter 0.3s}
+.equip-card:hover .equip-photo{filter:brightness(0.9) saturate(1)}
+.equip-photo-wrap{width:100%;height:160px;overflow:hidden;background:#070f2a}
+.equip-svg{width:100%;height:160px;display:block;transition:transform 0.4s}
+.equip-card:hover .equip-svg{transform:scale(1.03)}
+.equip-body{padding:20px}
+.equip-body h4{font-size:17px;font-weight:700;margin-bottom:6px}
+.equip-body p{font-size:13px;color:var(--dim);line-height:1.55;font-weight:300}
+.equip-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.08em;background:rgba(26,111,255,0.15);color:var(--blue-bright);padding:3px 10px;border-radius:100px;margin-top:12px;text-transform:uppercase}
+
+/* WHY */
+.why-sec{background:var(--blue-deep)}
+.why-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+.why-features{display:flex;flex-direction:column;gap:24px;margin-top:44px}
+.why-feat{
+  display:flex;gap:18px;align-items:flex-start;padding:24px;
+  border:1px solid rgba(255,255,255,0.06);border-radius:12px;
+  background:rgba(255,255,255,0.02);transition:border-color 0.2s,background 0.2s;cursor:pointer;
+}
+.why-feat:hover{border-color:var(--blue-border);background:rgba(26,111,255,0.05)}
+.why-feat-icon{
+  width:44px;height:44px;flex-shrink:0;
+  background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-top:2px;
+}
+.why-feat h4{font-size:16px;font-weight:700;margin-bottom:5px}
+.why-feat p{font-size:14px;color:var(--dim);line-height:1.6;font-weight:300}
+.why-visual{position:relative;height:540px}
+.why-photo-main{
+  position:absolute;top:0;left:0;right:60px;bottom:60px;
+  border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.5);
+}
+.why-photo-main img{width:100%;height:100%;object-fit:cover;filter:brightness(0.75) saturate(0.9)}
+.why-photo-thumb{
+  position:absolute;bottom:0;right:0;width:55%;height:47%;
+  border-radius:14px;overflow:hidden;
+  border:3px solid var(--blue-deep);box-shadow:0 12px 40px rgba(0,0,0,0.5);
+}
+.why-photo-thumb img{width:100%;height:100%;object-fit:cover;filter:brightness(0.75) saturate(0.9)}
+.why-badge{
+  position:absolute;top:24px;right:80px;
+  background:rgba(6,15,46,0.85);backdrop-filter:blur(12px);
+  border:1px solid rgba(26,111,255,0.3);border-radius:100px;padding:10px 20px;
+  font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;
+}
+.why-badge .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+
+/* STATS BAND */
+.stats-band{
+  background:linear-gradient(135deg,var(--blue-glow),var(--blue));
+  padding:60px 56px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;overflow:hidden;
+}
+.stats-band::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.stat-item{padding:20px 40px;text-align:center;border-right:1px solid rgba(255,255,255,0.15);position:relative;z-index:1}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:64px;line-height:1;letter-spacing:0.02em}
+.stat-unit{font-size:28px}
+.stat-label{font-size:13px;font-weight:600;opacity:0.75;letter-spacing:0.06em;text-transform:uppercase;margin-top:6px}
+
+/* TESTIMONIALS */
+.testimonials-sec{background:var(--blue-mid)}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.t-card{
+  background:var(--blue-deep);border:1px solid rgba(26,111,255,0.1);
+  border-radius:16px;padding:36px 32px;position:relative;overflow:hidden;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.t-card:hover{border-color:rgba(26,111,255,0.35);transform:translateY(-3px)}
+.t-quote-mark{position:absolute;top:18px;right:24px;font-family:'Bebas Neue',sans-serif;font-size:90px;color:rgba(26,111,255,0.1);line-height:1}
+.t-stars{color:var(--blue-bright);font-size:13px;margin-bottom:16px;letter-spacing:2px}
+.t-text{font-size:15px;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.75;margin-bottom:28px}
+.t-author{display:flex;align-items:center;gap:12px}
+.t-avatar{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue),var(--blue-glow));
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;
+}
+.t-name{font-size:14px;font-weight:700}
+.t-role{font-size:12px;color:var(--mid)}
+
+/* CTA BAND */
+.cta-band{position:relative;overflow:hidden}
+.cta-img{position:absolute;inset:0;z-index:0}
+.cta-img img{width:100%;height:100%;object-fit:cover;filter:brightness(0.2) saturate(0.5)}
+.cta-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(6,15,46,0.96) 0%,rgba(6,15,46,0.7) 60%,transparent 100%)}
+.cta-content{position:relative;z-index:2;padding:100px 56px;max-width:700px}
+.cta-content h2{font-size:clamp(40px,6vw,80px);margin-bottom:20px}
+.cta-content p{font-size:17px;font-weight:300;color:var(--dim);margin-bottom:40px;line-height:1.7}
+.cta-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.cta-phone-link{display:flex;align-items:center;gap:10px;font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.05em;color:var(--blue-bright)}
+
+/* CONTACT */
+.contact-sec{background:var(--blue-deep)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:28px;margin-top:44px}
+.c-info-item{display:flex;gap:16px;align-items:flex-start}
+.c-info-icon{width:46px;height:46px;flex-shrink:0;border-radius:10px;background:rgba(26,111,255,0.1);border:1px solid rgba(26,111,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px}
+.c-info-text h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.c-info-text p,.c-info-text a{font-size:14px;color:var(--dim)}
+.c-info-text a{color:var(--blue-bright);transition:opacity 0.2s}
+.c-info-text a:hover{opacity:0.75}
+.cform{display:flex;flex-direction:column;gap:18px}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fg label{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--mid)}
+.fg input,.fg textarea,.fg select{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;color:#fff;padding:13px 16px;font-size:14px;font-weight:400;
+  font-family:'Figtree',sans-serif;width:100%;outline:none;transition:border-color 0.2s,background 0.2s;
+}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,0.2)}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--blue);background:rgba(26,111,255,0.05)}
+.fg select option{background:#0a1a4a}
+.fg textarea{resize:vertical;min-height:110px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fsubmit{
+  background:linear-gradient(135deg,var(--blue),var(--blue-glow));
+  color:#fff;border:none;padding:16px 32px;border-radius:8px;
+  font-size:15px;font-weight:700;letter-spacing:0.02em;font-family:'Figtree',sans-serif;
+  cursor:pointer;width:100%;margin-top:6px;
+  box-shadow:0 4px 30px rgba(26,111,255,0.35);transition:all 0.2s;
+}
+.fsubmit:hover{box-shadow:0 4px 50px rgba(26,111,255,0.6);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:#030a1e;padding:64px 56px 32px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:52px}
+.footer-brand-desc{font-size:14px;font-weight:300;color:var(--dim);line-height:1.7;margin-top:16px;max-width:300px}
+.footer-col h5{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:14px;color:var(--dim);transition:color 0.2s;font-weight:300}
+.footer-col ul li a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom p{font-size:13px;color:rgba(255,255,255,0.25)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.25);transition:color 0.2s}
+.footer-links a:hover{color:var(--dim)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-l.visible{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-r.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1200px){
+  .why-grid{grid-template-columns:1fr}
+  .why-visual{height:360px}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .stats-band{grid-template-columns:repeat(2,1fr)}
+  .stat-item{border-bottom:1px solid rgba(255,255,255,0.1)}
+}
+@media(max-width:900px){
+  nav{padding:16px 24px}
+  nav.scrolled{padding:12px 24px}
+  .nav-links,.nav-phone,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero{padding:0 24px 60px}
+  .hero-phone{display:none}
+  section{padding:72px 24px}
+  .strip-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .strip-cell{height:280px}
+  .svc-grid{grid-template-columns:1fr}
+  .t-grid{grid-template-columns:1fr}
+  .stats-band{padding:48px 24px}
+  .cta-content{padding:72px 24px}
+  footer{padding:48px 24px 28px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:36px}
+  .mobile-menu{padding:80px 24px 48px}
+}
+@media(max-width:560px){
+  .frow{grid-template-columns:1fr}
+  .stats-band{grid-template-columns:1fr 1fr}
+  .hero-stats{flex-direction:column;width:100%}
+  .hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">
+    <div class="logo-mark">T</div>
+    <span class="logo-text">Total Rental <span>Solutions</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#equipment">Equipment</a>
+    <a href="#why">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-phone">866-401-8600</div>
+  <a href="#contact" class="nav-cta">Get a Quote →</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#equipment" onclick="closeMenu()">Equipment</a>
+  <a href="#why" onclick="closeMenu()">About</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#contact" class="mob-cta" onclick="closeMenu()">Get a Free Quote →</a>
+  <p class="mob-phone-txt">📞 866-401-8600</p>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1800&q=80" alt="Large scale event production with LED video wall" loading="eager">
+  </div>
+  <div class="hero-overlay"></div>
+  <a href="tel:8664018600" class="hero-phone">
+    <div class="phone-orb">📞</div>
+    <span>866-401-8600</span>
+  </a>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      Nationwide AV &amp; Technology Rentals
+    </div>
+    <h1>
+      THE AV<br>
+      <span class="blue">PARTNER</span><br>
+      EVENTS <span class="outline">DEMAND.</span>
+    </h1>
+    <p class="hero-sub">
+      From trade shows to pharma conferences — premium audio, video and display technology. Delivered anywhere in the US within 24 hours.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-blue">Request a Quote →</a>
+      <a href="#services" class="btn-ghost">Explore Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">24<span class="blue">hr</span></div>
+        <div class="hero-stat-label">Nationwide Delivery</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">24<span class="blue">/7</span></div>
+        <div class="hero-stat-label">Live Support</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">50<span class="blue">+</span></div>
+        <div class="hero-stat-label">Same-Day Cities</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">15<span class="blue">yr</span></div>
+        <div class="hero-stat-label">In the Business</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Trade Shows <span class="sep"></span></span>
+    <span class="marquee-item">Corporate Meetings <span class="sep"></span></span>
+    <span class="marquee-item">Event Production <span class="sep"></span></span>
+    <span class="marquee-item">Pharmaceutical Events <span class="sep"></span></span>
+    <span class="marquee-item">LED Video Walls <span class="sep"></span></span>
+    <span class="marquee-item">Audio Systems <span class="sep"></span></span>
+    <span class="marquee-item">Projectors &amp; Screens <span class="sep"></span></span>
+    <span class="marquee-item">Touch Displays <span class="sep"></span></span>
+    <span class="marquee-item">Kiosks &amp; Signage <span class="sep"></span></span>
+    <span class="marquee-item">Nationwide Delivery <span class="sep"></span></span>
+    <span class="marquee-item">Trade Shows <span class="sep"></span></span>
+    <span class="marquee-item">Corporate Meetings <span class="sep"></span></span>
+    <span class="marquee-item">Event Production <span class="sep"></span></span>
+    <span class="marquee-item">Pharmaceutical Events <span class="sep"></span></span>
+    <span class="marquee-item">LED Video Walls <span class="sep"></span></span>
+    <span class="marquee-item">Audio Systems <span class="sep"></span></span>
+    <span class="marquee-item">Projectors &amp; Screens <span class="sep"></span></span>
+    <span class="marquee-item">Touch Displays <span class="sep"></span></span>
+    <span class="marquee-item">Kiosks &amp; Signage <span class="sep"></span></span>
+    <span class="marquee-item">Nationwide Delivery <span class="sep"></span></span>
+  </div>
+</div>
+
+<!-- PHOTO FEATURE STRIP -->
+<div class="feature-strip reveal">
+  <div class="strip-grid">
+    <div class="strip-cell">
+      <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1000&q=75" alt="Concert event production stage lighting">
+      <div class="strip-overlay"></div>
+      <div class="strip-label">
+        <div class="strip-cat">Event Production</div>
+        <h3>Stage &amp; Lighting</h3>
+        <p>Truss systems, professional stage lighting, and full production support.</p>
+      </div>
+    </div>
+    <div class="strip-cell">
+      <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=75" alt="Corporate conference presentation">
+      <div class="strip-overlay"></div>
+      <div class="strip-label">
+        <div class="strip-cat">Corporate Events</div>
+        <h3>Boardroom to Ballroom</h3>
+        <p>AV setups that command attention and inspire your audience.</p>
+      </div>
+    </div>
+    <div class="strip-cell">
+      <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=75" alt="Trade show event floor">
+      <div class="strip-overlay"></div>
+      <div class="strip-label">
+        <div class="strip-cat">Trade Shows</div>
+        <h3>Command the Floor</h3>
+        <p>Video walls, displays, and tech that draws crowds to your booth.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-sec" id="services">
+  <div class="services-head">
+    <div>
+      <div class="label">What We Do</div>
+      <h2 class="sec-title">Built for <span class="blue">every</span><br>type of event</h2>
+    </div>
+    <a href="#contact" class="btn-ghost">View All Services →</a>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card reveal">
+      <div class="svc-num">01</div>
+      <img class="svc-photo" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=700&q=70" alt="Trade show event displays">
+      <span class="svc-icon">🎪</span>
+      <h3>Trade Shows</h3>
+      <p>Command the floor with high-impact LED video walls, crisp audio systems, and turnkey display technology that draws attendees in and keeps them engaged all day long.</p>
+      <span class="svc-link">Learn More →</span>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-num">02</div>
+      <img class="svc-photo" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&q=70" alt="Corporate meeting presentation">
+      <span class="svc-icon">🎤</span>
+      <h3>Corporate Meetings</h3>
+      <p>From boardroom to ballroom — professional AV setups, videoconferencing systems, and presentation equipment that performs flawlessly when it matters most.</p>
+      <span class="svc-link">Learn More →</span>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-num">03</div>
+      <img class="svc-photo" src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=700&q=70" alt="Event production stage">
+      <span class="svc-icon">🎬</span>
+      <h3>Event Production</h3>
+      <p>Full-scale production support — staging, lighting rigs, truss systems, and broadcast-quality audio/video for large-scale experiences that leave lasting impressions.</p>
+      <span class="svc-link">Learn More →</span>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-num">04</div>
+      <img class="svc-photo" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&q=70" alt="Pharmaceutical conference event">
+      <span class="svc-icon">💊</span>
+      <h3>Pharmaceutical Events</h3>
+      <p>Compliant, polished technology solutions for medical education programs, advisory boards, speaker series, and investigator meetings — wherever they happen nationwide.</p>
+      <span class="svc-link">Learn More →</span>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPMENT -->
+<section class="equip-sec" id="equipment">
+  <div class="equip-head">
+    <div>
+      <div class="label">Our Inventory</div>
+      <h2 class="sec-title">Premium gear for<br><span class="blue">every</span> application</h2>
+    </div>
+    <a href="#contact" class="btn-ghost">Full Catalog →</a>
+  </div>
+  <div class="equip-grid">
+    <!-- AUDIO -->
+    <div class="equip-card reveal">
+      <div class="equip-photo-wrap">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" class="equip-svg">
+          <rect width="400" height="160" fill="#070f2a"/>
+          <rect x="20" y="30" width="360" height="100" rx="8" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+          <!-- faders -->
+          <rect x="50" y="50" width="8" height="60" rx="4" fill="#0d2a6e"/>
+          <rect x="50" y="72" width="8" height="16" rx="3" fill="#4d8fff"/>
+          <rect x="80" y="50" width="8" height="60" rx="4" fill="#0d2a6e"/>
+          <rect x="80" y="60" width="8" height="16" rx="3" fill="#4d8fff"/>
+          <rect x="110" y="50" width="8" height="60" rx="4" fill="#0d2a6e"/>
+          <rect x="110" y="80" width="8" height="16" rx="3" fill="#4d8fff"/>
+          <rect x="140" y="50" width="8" height="60" rx="4" fill="#0d2a6e"/>
+          <rect x="140" y="65" width="8" height="16" rx="3" fill="#4d8fff"/>
+          <rect x="170" y="50" width="8" height="60" rx="4" fill="#0d2a6e"/>
+          <rect x="170" y="55" width="8" height="16" rx="3" fill="#4d8fff"/>
+          <!-- knobs -->
+          <circle cx="230" cy="65" r="10" fill="#0d2a6e" stroke="#1a3a7a" stroke-width="1"/>
+          <circle cx="230" cy="65" r="5" fill="#1a6fff"/>
+          <circle cx="258" cy="65" r="10" fill="#0d2a6e" stroke="#1a3a7a" stroke-width="1"/>
+          <circle cx="258" cy="65" r="5" fill="#1a6fff" opacity=".6"/>
+          <circle cx="286" cy="65" r="10" fill="#0d2a6e" stroke="#1a3a7a" stroke-width="1"/>
+          <circle cx="286" cy="65" r="5" fill="#1a6fff" opacity=".4"/>
+          <!-- VU meters -->
+          <rect x="220" y="90" width="90" height="8" rx="2" fill="#071020"/>
+          <rect x="220" y="90" width="65" height="8" rx="2" fill="#1a6fff" opacity=".8"/>
+          <rect x="220" y="104" width="90" height="8" rx="2" fill="#071020"/>
+          <rect x="220" y="104" width="45" height="8" rx="2" fill="#4d8fff" opacity=".6"/>
+          <!-- screen -->
+          <rect x="310" y="48" width="50" height="64" rx="4" fill="#071020" stroke="#1a3a7a" stroke-width="1"/>
+          <rect x="315" y="53" width="40" height="24" rx="2" fill="#0a1835"/>
+          <!-- waveform on screen -->
+          <polyline points="317,65 321,58 325,70 329,55 333,68 337,60 341,65 345,57 349,65 353,62" fill="none" stroke="#1a6fff" stroke-width="1.5"/>
+          <circle cx="335" cy="100" r="5" fill="#22c55e"/>
+        </svg>
+      </div>
+      <div class="equip-body">
+        <h4>Audio Equipment</h4>
+        <p>PA systems, wireless mics, mixers, line arrays and monitoring for any venue size.</p>
+        <span class="equip-tag">Most Rented</span>
+      </div>
+    </div>
+
+    <!-- PROJECTORS -->
+    <div class="equip-card reveal">
+      <div class="equip-photo-wrap">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" class="equip-svg">
+          <rect width="400" height="160" fill="#070f2a"/>
+          <!-- beam -->
+          <polygon points="200,80 60,20 60,140" fill="#1a6fff" opacity=".06"/>
+          <polygon points="200,80 60,30 60,130" fill="#1a6fff" opacity=".08"/>
+          <!-- projector body -->
+          <rect x="200" y="52" width="130" height="56" rx="10" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+          <rect x="208" y="60" width="40" height="40" rx="6" fill="#071020" stroke="#1a3a7a" stroke-width="1"/>
+          <!-- lens -->
+          <circle cx="228" cy="80" r="14" fill="#071020" stroke="#1a6fff" stroke-width="1.5"/>
+          <circle cx="228" cy="80" r="9" fill="#0a1640" stroke="#4d8fff" stroke-width="1"/>
+          <circle cx="228" cy="80" r="4" fill="#1a6fff" opacity=".7"/>
+          <circle cx="224" cy="76" r="1.5" fill="white" opacity=".5"/>
+          <!-- vents -->
+          <line x1="258" y1="64" x2="258" y2="96" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="264" y1="64" x2="264" y2="96" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="270" y1="64" x2="270" y2="96" stroke="#1a3a7a" stroke-width="1"/>
+          <!-- indicator lights -->
+          <circle cx="300" cy="72" r="4" fill="#22c55e"/>
+          <circle cx="314" cy="72" r="4" fill="#1a6fff"/>
+          <!-- tripod legs -->
+          <line x1="265" y1="108" x2="245" y2="145" stroke="#1a3a7a" stroke-width="2"/>
+          <line x1="265" y1="108" x2="265" y2="145" stroke="#1a3a7a" stroke-width="2"/>
+          <line x1="265" y1="108" x2="285" y2="145" stroke="#1a3a7a" stroke-width="2"/>
+          <!-- screen -->
+          <rect x="30" y="18" width="80" height="124" rx="4" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+          <rect x="36" y="24" width="68" height="96" rx="2" fill="#071a45"/>
+          <rect x="36" y="24" width="68" height="96" rx="2" fill="url(#sg)"/>
+          <defs>
+            <linearGradient id="sg" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#1a6fff" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#0a3aff" stop-opacity="0.05"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="equip-body">
+        <h4>Projectors</h4>
+        <p>Short-throw to long-throw, 4K laser projectors from all leading brands.</p>
+      </div>
+    </div>
+
+    <!-- LED VIDEO WALLS -->
+    <div class="equip-card reveal">
+      <div class="equip-photo-wrap">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" class="equip-svg">
+          <rect width="400" height="160" fill="#070f2a"/>
+          <!-- main wall -->
+          <rect x="40" y="15" width="320" height="130" rx="4" fill="#050d22" stroke="#1a3a7a" stroke-width="1"/>
+          <!-- panel grid -->
+          <defs>
+            <pattern id="pg" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <rect width="39" height="39" fill="#071020" stroke="#0d2050" stroke-width="0.5"/>
+              <!-- LED dots -->
+              <circle cx="8"  cy="8"  r="2" fill="#1a6fff" opacity=".9"/>
+              <circle cx="20" cy="8"  r="2" fill="#4d8fff" opacity=".7"/>
+              <circle cx="32" cy="8"  r="2" fill="#1a6fff" opacity=".5"/>
+              <circle cx="8"  cy="20" r="2" fill="#4d8fff" opacity=".6"/>
+              <circle cx="20" cy="20" r="2" fill="#1a6fff" opacity=".95"/>
+              <circle cx="32" cy="20" r="2" fill="#4d8fff" opacity=".8"/>
+              <circle cx="8"  cy="32" r="2" fill="#1a6fff" opacity=".4"/>
+              <circle cx="20" cy="32" r="2" fill="#4d8fff" opacity=".6"/>
+              <circle cx="32" cy="32" r="2" fill="#1a6fff" opacity=".85"/>
+            </pattern>
+          </defs>
+          <rect x="41" y="16" width="318" height="128" fill="url(#pg)"/>
+          <!-- glowing content overlay -->
+          <rect x="60" y="30" width="280" height="100" rx="2" fill="#1a6fff" opacity=".04"/>
+          <!-- abstract graphic on wall -->
+          <ellipse cx="200" cy="80" rx="70" ry="35" fill="none" stroke="#4d8fff" stroke-width="1" opacity=".3"/>
+          <ellipse cx="200" cy="80" rx="45" ry="22" fill="none" stroke="#1a6fff" stroke-width="1.5" opacity=".4"/>
+          <text x="200" y="75" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4d8fff" opacity=".7" font-weight="600">TRS</text>
+          <text x="200" y="90" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#6b9fff" opacity=".6" letter-spacing="3">LIVE EVENT</text>
+          <!-- panel seams highlight -->
+          <line x1="40" y1="55" x2="360" y2="55" stroke="#0d2050" stroke-width="1.5"/>
+          <line x1="40" y1="95" x2="360" y2="95" stroke="#0d2050" stroke-width="1.5"/>
+          <line x1="120" y1="15" x2="120" y2="145" stroke="#0d2050" stroke-width="1.5"/>
+          <line x1="200" y1="15" x2="200" y2="145" stroke="#0d2050" stroke-width="1.5"/>
+          <line x1="280" y1="15" x2="280" y2="145" stroke="#0d2050" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="equip-body">
+        <h4>LED Video Walls</h4>
+        <p>Modular LED panels for stunning indoor and outdoor displays at any scale.</p>
+        <span class="equip-tag">High Demand</span>
+      </div>
+    </div>
+
+    <!-- TOUCH SCREENS -->
+    <div class="equip-card reveal">
+      <div class="equip-photo-wrap">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" class="equip-svg">
+          <rect width="400" height="160" fill="#070f2a"/>
+          <!-- monitor -->
+          <rect x="100" y="12" width="200" height="120" rx="8" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1.5"/>
+          <rect x="108" y="20" width="184" height="104" rx="4" fill="#071020"/>
+          <!-- screen content -->
+          <rect x="115" y="27" width="170" height="90" rx="2" fill="#04122b"/>
+          <!-- UI grid on screen -->
+          <rect x="122" y="34" width="72" height="36" rx="3" fill="#0d2a6e" stroke="#1a6fff" stroke-width="0.5"/>
+          <rect x="200" y="34" width="72" height="36" rx="3" fill="#0d2a6e" stroke="#1a3a7a" stroke-width="0.5"/>
+          <rect x="122" y="76" width="72" height="36" rx="3" fill="#0d2a6e" stroke="#1a3a7a" stroke-width="0.5"/>
+          <rect x="200" y="76" width="72" height="36" rx="3" fill="#0d2a6e" stroke="#1a6fff" stroke-width="0.5"/>
+          <!-- icons inside tiles -->
+          <circle cx="158" cy="50" r="8" fill="#1a6fff" opacity=".3"/>
+          <circle cx="158" cy="50" r="4" fill="#4d8fff"/>
+          <circle cx="236" cy="50" r="8" fill="#1a3a7a"/>
+          <rect x="229" y="47" width="14" height="2" rx="1" fill="#6b9fff"/>
+          <rect x="229" y="51" width="10" height="2" rx="1" fill="#6b9fff"/>
+          <rect x="229" y="55" width="12" height="2" rx="1" fill="#6b9fff"/>
+          <circle cx="158" cy="92" r="8" fill="#1a3a7a"/>
+          <text x="158" y="96" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#4d8fff">OK</text>
+          <circle cx="236" cy="92" r="8" fill="#1a6fff" opacity=".3"/>
+          <circle cx="236" cy="92" r="4" fill="#4d8fff"/>
+          <!-- touch ripple -->
+          <circle cx="236" cy="92" r="12" fill="none" stroke="#4d8fff" stroke-width="1" opacity=".4"/>
+          <circle cx="236" cy="92" r="18" fill="none" stroke="#4d8fff" stroke-width="0.5" opacity=".2"/>
+          <!-- stand -->
+          <rect x="190" y="132" width="20" height="14" rx="2" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+          <rect x="165" y="144" width="70" height="6" rx="3" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="equip-body">
+        <h4>Touch Screens</h4>
+        <p>Interactive touchscreen displays for kiosks, wayfinding, and presentations.</p>
+      </div>
+    </div>
+
+    <!-- COMPUTERS -->
+    <div class="equip-card reveal">
+      <div class="equip-photo-wrap">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" class="equip-svg">
+          <rect width="400" height="160" fill="#070f2a"/>
+          <!-- laptop -->
+          <rect x="80" y="55" width="200" height="130" rx="8" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+          <!-- screen part -->
+          <rect x="80" y="20" width="200" height="120" rx="8" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+          <rect x="88" y="28" width="184" height="104" rx="4" fill="#04122b"/>
+          <!-- code on screen -->
+          <rect x="96" y="36" width="80" height="5" rx="2" fill="#1a6fff" opacity=".7"/>
+          <rect x="96" y="46" width="50" height="4" rx="2" fill="#4d8fff" opacity=".5"/>
+          <rect x="104" y="55" width="100" height="4" rx="2" fill="#6b9fff" opacity=".4"/>
+          <rect x="104" y="64" width="70" height="4" rx="2" fill="#4d8fff" opacity=".5"/>
+          <rect x="96" y="73" width="90" height="4" rx="2" fill="#1a6fff" opacity=".6"/>
+          <rect x="104" y="82" width="60" height="4" rx="2" fill="#6b9fff" opacity=".35"/>
+          <rect x="96" y="91" width="110" height="4" rx="2" fill="#4d8fff" opacity=".5"/>
+          <rect x="104" y="100" width="45" height="4" rx="2" fill="#1a6fff" opacity=".65"/>
+          <!-- cursor blink -->
+          <rect x="152" y="100" width="2" height="10" rx="1" fill="#4d8fff" opacity=".9"/>
+          <!-- hinge -->
+          <rect x="78" y="136" width="204" height="5" rx="2" fill="#071020"/>
+          <!-- keyboard base -->
+          <rect x="60" y="138" width="240" height="14" rx="6" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+          <!-- keys -->
+          <rect x="75"  y="141" width="8" height="5" rx="1" fill="#071540"/>
+          <rect x="86"  y="141" width="8" height="5" rx="1" fill="#071540"/>
+          <rect x="97"  y="141" width="8" height="5" rx="1" fill="#071540"/>
+          <rect x="108" y="141" width="8" height="5" rx="1" fill="#071540"/>
+          <rect x="119" y="141" width="8" height="5" rx="1" fill="#071540"/>
+          <rect x="130" y="141" width="28" height="5" rx="1" fill="#1a6fff" opacity=".3"/>
+          <rect x="162" y="141" width="8" height="5" rx="1" fill="#071540"/>
+          <rect x="173" y="141" width="8" height="5" rx="1" fill="#071540"/>
+          <rect x="184" y="141" width="8" height="5" rx="1" fill="#071540"/>
+          <!-- trackpad -->
+          <rect x="157" y="148" width="46" height="3" rx="1.5" fill="#071540"/>
+          <!-- extra laptop stacked behind -->
+          <rect x="305" y="30" width="60" height="44" rx="4" fill="#0a1638" stroke="#1a3a7a" stroke-width="1"/>
+          <rect x="309" y="34" width="52" height="32" rx="2" fill="#04122b"/>
+          <rect x="313" y="38" width="30" height="3" rx="1" fill="#1a6fff" opacity=".5"/>
+          <rect x="313" y="44" width="20" height="3" rx="1" fill="#4d8fff" opacity=".35"/>
+          <rect x="313" y="50" width="25" height="3" rx="1" fill="#1a6fff" opacity=".4"/>
+          <rect x="300" y="74" width="70" height="5" rx="2" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="equip-body">
+        <h4>Computers &amp; Laptops</h4>
+        <p>Desktops, laptops, all-in-ones and networking — fully configured for your event.</p>
+      </div>
+    </div>
+
+    <!-- LIGHTING & STAGE -->
+    <div class="equip-card reveal">
+      <div class="equip-photo-wrap">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" class="equip-svg">
+          <rect width="400" height="160" fill="#070f2a"/>
+          <!-- truss bar -->
+          <rect x="20" y="22" width="360" height="14" rx="4" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="20" y1="26" x2="380" y2="26" stroke="#1a3a7a" stroke-width="0.5"/>
+          <line x1="20" y1="32" x2="380" y2="32" stroke="#1a3a7a" stroke-width="0.5"/>
+          <!-- diagonal truss members -->
+          <line x1="40"  y1="22" x2="60"  y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="80"  y1="22" x2="60"  y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="80"  y1="22" x2="100" y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="120" y1="22" x2="100" y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="120" y1="22" x2="140" y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="160" y1="22" x2="140" y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="200" y1="22" x2="180" y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="240" y1="22" x2="220" y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="280" y1="22" x2="260" y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="320" y1="22" x2="300" y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <line x1="360" y1="22" x2="340" y2="36" stroke="#1a3a7a" stroke-width="1"/>
+          <!-- fixture 1 -->
+          <line x1="80" y1="36" x2="80" y2="52" stroke="#1a3a7a" stroke-width="2"/>
+          <rect x="66" y="52" width="28" height="20" rx="4" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+          <circle cx="80" cy="62" r="7" fill="#071020" stroke="#1a6fff" stroke-width="1"/>
+          <circle cx="80" cy="62" r="4" fill="#1a6fff" opacity=".8"/>
+          <polygon points="66,72 80,155 94,72" fill="#1a6fff" opacity=".12"/>
+          <polygon points="69,72 80,140 91,72" fill="#4d8fff" opacity=".1"/>
+          <!-- fixture 2 (centre, brighter) -->
+          <line x1="200" y1="36" x2="200" y2="52" stroke="#1a3a7a" stroke-width="2"/>
+          <rect x="186" y="52" width="28" height="20" rx="4" fill="#0d1c4a" stroke="#1a6fff" stroke-width="1.5"/>
+          <circle cx="200" cy="62" r="7" fill="#071020" stroke="#4d8fff" stroke-width="1.5"/>
+          <circle cx="200" cy="62" r="4" fill="#4d8fff"/>
+          <polygon points="183,72 200,158 217,72" fill="#1a6fff" opacity=".18"/>
+          <polygon points="187,72 200,145 213,72" fill="#4d8fff" opacity=".14"/>
+          <!-- fixture 3 -->
+          <line x1="320" y1="36" x2="320" y2="52" stroke="#1a3a7a" stroke-width="2"/>
+          <rect x="306" y="52" width="28" height="20" rx="4" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1"/>
+          <circle cx="320" cy="62" r="7" fill="#071020" stroke="#1a6fff" stroke-width="1"/>
+          <circle cx="320" cy="62" r="4" fill="#1a6fff" opacity=".6"/>
+          <polygon points="306,72 320,155 334,72" fill="#1a6fff" opacity=".1"/>
+          <!-- stage floor glow -->
+          <ellipse cx="80"  cy="155" rx="22" ry="5" fill="#1a6fff" opacity=".2"/>
+          <ellipse cx="200" cy="158" rx="28" ry="6" fill="#4d8fff" opacity=".25"/>
+          <ellipse cx="320" cy="155" rx="22" ry="5" fill="#1a6fff" opacity=".15"/>
+        </svg>
+      </div>
+      <div class="equip-body">
+        <h4>Lighting &amp; Stage</h4>
+        <p>Stage lighting, truss systems, and rigging for professional event production.</p>
+      </div>
+    </div>
+
+    <!-- MOBILE DEVICES -->
+    <div class="equip-card reveal">
+      <div class="equip-photo-wrap">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" class="equip-svg">
+          <rect width="400" height="160" fill="#070f2a"/>
+          <!-- iPad main -->
+          <rect x="120" y="10" width="160" height="140" rx="12" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1.5"/>
+          <rect x="128" y="20" width="144" height="112" rx="4" fill="#04122b"/>
+          <!-- app grid on iPad -->
+          <rect x="135" y="27" width="30" height="30" rx="5" fill="#1a2d6a"/>
+          <rect x="170" y="27" width="30" height="30" rx="5" fill="#0d2a6e"/>
+          <rect x="205" y="27" width="30" height="30" rx="5" fill="#1a2d6a"/>
+          <rect x="240" y="27" width="28" height="30" rx="5" fill="#0a1e52"/>
+          <!-- icons in app tiles -->
+          <circle cx="150" cy="42" r="8" fill="#1a6fff" opacity=".5"/>
+          <circle cx="150" cy="42" r="4" fill="#4d8fff"/>
+          <rect x="163" y="39" width="14" height="2" rx="1" fill="#4d8fff"/>
+          <rect x="163" y="43" width="10" height="2" rx="1" fill="#4d8fff"/>
+          <rect x="163" y="47" width="12" height="2" rx="1" fill="#4d8fff"/>
+          <circle cx="220" cy="42" r="8" fill="#1a6fff" opacity=".4"/>
+          <text x="220" y="46" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#4d8fff">✓</text>
+          <!-- content rows -->
+          <rect x="135" y="62" width="133" height="5" rx="2" fill="#0d2050"/>
+          <rect x="135" y="72" width="100" height="4" rx="2" fill="#0d2050" opacity=".7"/>
+          <rect x="135" y="82" width="120" height="4" rx="2" fill="#0d2050" opacity=".5"/>
+          <!-- chart bar on iPad -->
+          <rect x="135" y="96"  width="18" height="28" rx="2" fill="#1a6fff" opacity=".7"/>
+          <rect x="157" y="108" width="18" height="16" rx="2" fill="#4d8fff" opacity=".6"/>
+          <rect x="179" y="100" width="18" height="24" rx="2" fill="#1a6fff" opacity=".5"/>
+          <rect x="201" y="90"  width="18" height="34" rx="2" fill="#4d8fff" opacity=".7"/>
+          <rect x="223" y="103" width="18" height="21" rx="2" fill="#1a6fff" opacity=".4"/>
+          <!-- home button -->
+          <circle cx="200" cy="140" r="5" fill="#0a1638" stroke="#1a3a7a" stroke-width="1"/>
+          <!-- small phone left -->
+          <rect x="55" y="35" width="58" height="100" rx="9" fill="#0a1638" stroke="#1a3a7a" stroke-width="1"/>
+          <rect x="60" y="44" width="48" height="76" rx="3" fill="#04122b"/>
+          <rect x="64" y="49" width="40" height="5" rx="2" fill="#0d2050"/>
+          <rect x="64" y="58" width="28" height="4" rx="2" fill="#0d2050" opacity=".6"/>
+          <circle cx="84" cy="80" r="12" fill="#071020" stroke="#1a3a7a" stroke-width="0.5"/>
+          <polyline points="78,80 82,76 90,80 82,84" fill="none" stroke="#1a6fff" stroke-width="1.5"/>
+          <circle cx="84" cy="126" r="4" fill="#0a1638" stroke="#1a3a7a" stroke-width="0.5"/>
+          <!-- small phone right -->
+          <rect x="287" y="35" width="58" height="100" rx="9" fill="#0a1638" stroke="#1a3a7a" stroke-width="1"/>
+          <rect x="292" y="44" width="48" height="76" rx="3" fill="#04122b"/>
+          <rect x="296" y="49" width="40" height="5" rx="2" fill="#0d2050"/>
+          <rect x="296" y="58" width="28" height="4" rx="2" fill="#0d2050" opacity=".6"/>
+          <circle cx="316" cy="80" r="12" fill="#1a6fff" opacity=".15"/>
+          <circle cx="316" cy="80" r="6" fill="#4d8fff" opacity=".5"/>
+          <circle cx="316" cy="126" r="4" fill="#0a1638" stroke="#1a3a7a" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="equip-body">
+        <h4>Mobile Devices</h4>
+        <p>iPads, tablets, and mobile devices for registration, surveys, and audience engagement.</p>
+      </div>
+    </div>
+
+    <!-- KIOSKS -->
+    <div class="equip-card reveal">
+      <div class="equip-photo-wrap">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" class="equip-svg">
+          <rect width="400" height="160" fill="#070f2a"/>
+          <!-- kiosk body -->
+          <rect x="150" y="10" width="100" height="145" rx="8" fill="#0d1c4a" stroke="#1a3a7a" stroke-width="1.5"/>
+          <!-- screen -->
+          <rect x="158" y="18" width="84" height="80" rx="4" fill="#04122b" stroke="#1a3a7a" stroke-width="0.5"/>
+          <!-- screen content -->
+          <rect x="163" y="23" width="74" height="10" rx="2" fill="#0d2a6e"/>
+          <rect x="167" y="25" width="45" height="6" rx="1" fill="#1a6fff" opacity=".6"/>
+          <!-- nav icons on screen -->
+          <circle cx="172" cy="47" r="10" fill="#0d2a6e"/>
+          <circle cx="172" cy="47" r="5" fill="#1a6fff" opacity=".7"/>
+          <circle cx="200" cy="47" r="10" fill="#0d2a6e"/>
+          <rect x="194" y="44" width="12" height="2" rx="1" fill="#4d8fff"/>
+          <rect x="194" y="48" width="8" height="2"  rx="1" fill="#4d8fff"/>
+          <circle cx="228" cy="47" r="10" fill="#0d2a6e"/>
+          <text x="228" y="51" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#4d8fff">i</text>
+          <rect x="163" y="64" width="74" height="5" rx="2" fill="#0d2050"/>
+          <rect x="163" y="73" width="50" height="4" rx="2" fill="#0d2050" opacity=".6"/>
+          <rect x="163" y="81" width="60" height="4" rx="2" fill="#0d2050" opacity=".4"/>
+          <!-- keyboard / card reader area -->
+          <rect x="162" y="104" width="76" height="40" rx="4" fill="#071020" stroke="#1a3a7a" stroke-width="0.5"/>
+          <rect x="167" y="108" width="66" height="12" rx="2" fill="#0d2050"/>
+          <rect x="167" y="124" width="20" height="8" rx="2" fill="#1a6fff" opacity=".4"/>
+          <rect x="191" y="124" width="20" height="8" rx="2" fill="#0d2050"/>
+          <rect x="215" y="124" width="10" height="8" rx="2" fill="#0d2050"/>
+          <rect x="167" y="135" width="66" height="5" rx="2" fill="#0d2050"/>
+          <!-- glow indicator -->
+          <circle cx="200" cy="100" r="3" fill="#22c55e"/>
+          <!-- flanking signage panels -->
+          <rect x="30"  y="30" width="110" height="100" rx="6" fill="#080f26" stroke="#1a3a7a" stroke-width="1"/>
+          <rect x="38"  y="38" width="94"  height="84"  rx="3" fill="#04122b"/>
+          <rect x="44"  y="44" width="82"  height="10"  rx="2" fill="#0d2a6e"/>
+          <rect x="44"  y="58" width="55"  height="5"   rx="2" fill="#0d2050"/>
+          <rect x="44"  y="67" width="70"  height="4"   rx="2" fill="#0d2050" opacity=".6"/>
+          <rect x="44"  y="76" width="48"  height="4"   rx="2" fill="#0d2050" opacity=".4"/>
+          <rect x="44"  y="88" width="82"  height="24"  rx="3" fill="#0d2a6e" opacity=".5"/>
+          <rect x="50"  y="94" width="40"  height="4"   rx="2" fill="#1a6fff" opacity=".5"/>
+          <rect x="260" y="30" width="110" height="100" rx="6" fill="#080f26" stroke="#1a3a7a" stroke-width="1"/>
+          <rect x="268" y="38" width="94"  height="84"  rx="3" fill="#04122b"/>
+          <rect x="274" y="44" width="82"  height="10"  rx="2" fill="#0d2a6e"/>
+          <rect x="274" y="58" width="55"  height="5"   rx="2" fill="#0d2050"/>
+          <rect x="274" y="67" width="70"  height="4"   rx="2" fill="#0d2050" opacity=".6"/>
+          <rect x="274" y="76" width="48"  height="4"   rx="2" fill="#0d2050" opacity=".4"/>
+          <rect x="274" y="88" width="82"  height="24"  rx="3" fill="#0d2a6e" opacity=".5"/>
+          <rect x="280" y="94" width="40"  height="4"   rx="2" fill="#1a6fff" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="equip-body">
+        <h4>Kiosks &amp; Digital Signage</h4>
+        <p>Standalone kiosks and digital signage solutions for wayfinding and brand activation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY TRS -->
+<section class="why-sec" id="why">
+  <div class="why-grid">
+    <div class="reveal-l">
+      <div class="label">Why Choose TRS</div>
+      <h2 class="sec-title">The detail is<br>the <span class="blue">difference.</span></h2>
+      <p class="sec-body">We're not just a vendor — we're your event technology partner. From the first quote to the final breakdown, our team is with you every step.</p>
+      <div class="why-features">
+        <div class="why-feat">
+          <div class="why-feat-icon">⚡</div>
+          <div>
+            <h4>24-Hour Nationwide Delivery</h4>
+            <p>Equipment delivered to any US location within 24 hours. Same-day service in 50+ cities.</p>
+          </div>
+        </div>
+        <div class="why-feat">
+          <div class="why-feat-icon">🌐</div>
+          <div>
+            <h4>Worldwide Service &amp; Support</h4>
+            <p>One of the few AV rental companies offering full worldwide service, support, and equipment.</p>
+          </div>
+        </div>
+        <div class="why-feat">
+          <div class="why-feat-icon">🛟</div>
+          <div>
+            <h4>24/7 Live Technical Support</h4>
+            <p>Our technicians are available around the clock — when your event is running, we're standing by.</p>
+          </div>
+        </div>
+        <div class="why-feat">
+          <div class="why-feat-icon">✅</div>
+          <div>
+            <h4>Single-Vendor Simplicity</h4>
+            <p>AV, computers, displays, office equipment — one provider, one invoice, zero headaches.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual reveal-r">
+      <div class="why-badge">
+        <span class="dot"></span> Live Events Active Now
+      </div>
+      <div class="why-photo-main">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=75" alt="Large scale event with video wall">
+      </div>
+      <div class="why-photo-thumb">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&q=75" alt="Audience at large conference event">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band reveal">
+  <div class="stat-item">
+    <div class="stat-num">24<span class="stat-unit">hr</span></div>
+    <div class="stat-label">Nationwide Delivery</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">24/7</div>
+    <div class="stat-label">Live Tech Support</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">50<span class="stat-unit">+</span></div>
+    <div class="stat-label">Same-Day Cities</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">15<span class="stat-unit">yr</span></div>
+    <div class="stat-label">Industry Experience</div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-sec">
+  <div class="label">Client Reviews</div>
+  <h2 class="sec-title">Trusted by event pros<br><span class="blue">coast to coast</span></h2>
+  <div class="t-grid reveal">
+    <div class="t-card">
+      <div class="t-quote-mark">"</div>
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">TRS delivered everything on time and the setup was flawless. The video wall they provided was stunning — our booth got more foot traffic than ever before at the show.</p>
+      <div class="t-author">
+        <div class="t-avatar">MR</div>
+        <div>
+          <div class="t-name">Mike R.</div>
+          <div class="t-role">Trade Show Manager</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote-mark">"</div>
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">Thank you again for your attention to the AV details, and your professionalism at all of our recent meetings. We appreciate you — year after year, TRS never lets us down.</p>
+      <div class="t-author">
+        <div class="t-avatar">KR</div>
+        <div>
+          <div class="t-name">Kimberly R.</div>
+          <div class="t-role">Pharma Events Director</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote-mark">"</div>
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">Last-minute request, same-day delivery, zero issues. TRS is the only AV rental partner I trust for high-stakes corporate events. They make me look good every single time.</p>
+      <div class="t-author">
+        <div class="t-avatar">JL</div>
+        <div>
+          <div class="t-name">James L.</div>
+          <div class="t-role">Corporate Event Planner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-img">
+    <img src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=1600&q=75" alt="Professional AV event production setup">
+  </div>
+  <div class="cta-overlay"></div>
+  <div class="cta-content reveal">
+    <h2>READY TO ELEVATE YOUR NEXT EVENT?</h2>
+    <p>Tell us what you need and get a custom quote usually within a few hours. We handle the tech — you handle the moment.</p>
+    <div class="cta-actions">
+      <a href="#contact" class="btn-blue">Get a Free Quote →</a>
+      <a href="tel:8664018600" class="cta-phone-link">📞 866-401-8600</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-sec" id="contact">
+  <div class="contact-grid">
+    <div class="reveal-l">
+      <div class="label">Get In Touch</div>
+      <h2 class="sec-title">Let's make your<br><span class="blue">event happen.</span></h2>
+      <p class="sec-body">Tell us about your event and we'll put together a custom technology package — fast.</p>
+      <div class="contact-info">
+        <div class="c-info-item">
+          <div class="c-info-icon">📞</div>
+          <div class="c-info-text">
+            <h4>Phone</h4>
+            <p><a href="tel:8664018600">866-401-8600</a> (Toll Free) &nbsp;·&nbsp; <a href="tel:4074788600">407-478-8600</a> (Local)</p>
+          </div>
+        </div>
+        <div class="c-info-item">
+          <div class="c-info-icon">⏱️</div>
+          <div class="c-info-text">
+            <h4>Support Hours</h4>
+            <p>24 hours a day, 7 days a week — always live, never a bot.</p>
+          </div>
+        </div>
+        <div class="c-info-item">
+          <div class="c-info-icon">🚚</div>
+          <div class="c-info-text">
+            <h4>Delivery</h4>
+            <p>Nationwide within 24 hours. Same-day delivery in 50+ US cities.</p>
+          </div>
+        </div>
+        <div class="c-info-item">
+          <div class="c-info-icon">🌍</div>
+          <div class="c-info-text">
+            <h4>Service Area</h4>
+            <p>Full US coverage plus worldwide equipment &amp; support availability.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-r">
+      <form class="cform" onsubmit="handleSubmit(event)">
+        <div class="frow">
+          <div class="fg">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane" required>
+          </div>
+          <div class="fg">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith" required>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Email</label>
+          <input type="email" placeholder="jane@company.com" required>
+        </div>
+        <div class="fg">
+          <label>Phone</label>
+          <input type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="fg">
+          <label>Event Type</label>
+          <select>
+            <option value="" disabled selected>Select your event type</option>
+            <option>Trade Show</option>
+            <option>Corporate Meeting</option>
+            <option>Event Production</option>
+            <option>Pharmaceutical Event</option>
+            <option>Conference / Summit</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Rental Requirements</label>
+          <textarea placeholder="Tell us about your event — dates, location, equipment needed, attendee count, anything that helps us quote you accurately..."></textarea>
+        </div>
+        <button type="submit" class="fsubmit">Send My Request →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="logo">
+        <div class="logo-mark" style="width:32px;height:32px;font-size:14px">T</div>
+        <span class="logo-text" style="font-size:18px">Total Rental <span>Solutions</span></span>
+      </div>
+      <p class="footer-brand-desc">Premier audio visual, computer, and office equipment rental — delivered nationwide. Your trusted event technology partner since 2009.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Trade Shows</a></li>
+        <li><a href="#services">Corporate Meetings</a></li>
+        <li><a href="#services">Event Production</a></li>
+        <li><a href="#services">Pharma Events</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Equipment</h5>
+      <ul>
+        <li><a href="#equipment">Audio Equipment</a></li>
+        <li><a href="#equipment">Projectors &amp; Screens</a></li>
+        <li><a href="#equipment">LED Video Walls</a></li>
+        <li><a href="#equipment">Computers &amp; Laptops</a></li>
+        <li><a href="#equipment">Touch Screens</a></li>
+        <li><a href="#equipment">Lighting &amp; Stage</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#why">About TRS</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://www.totalrentalsolutions.com/careers">Careers</a></li>
+        <li><a href="https://www.totalrentalsolutions.com/privacy-policy">Privacy Policy</a></li>
+        <li><a href="http://www.ebay.com/usr/totalrentalsolutions">eBay Store</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Total Rental Solutions, Inc. All Rights Reserved. Orlando, FL.</p>
+    <div class="footer-links">
+      <a href="tel:8664018600">866-401-8600</a>
+      <a href="https://www.totalrentalsolutions.com/privacy-policy">Privacy</a>
+      <a href="https://www.totalrentalsolutions.com/careers">Careers</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── STICKY BOTTOM BAR ──────────────────────────────────────── -->
+<div id="sticky-bar">
+  <style>
+    #sticky-bar{
+      position:fixed;bottom:0;left:0;right:0;z-index:150;
+      background:rgba(6,12,38,0.97);
+      border-top:1px solid rgba(26,111,255,0.3);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      padding:0 32px;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;height:60px;
+    }
+    .sbar-left{display:flex;align-items:center;gap:24px;flex-shrink:0}
+    .sbar-phone{
+      display:flex;align-items:center;gap:8px;
+      font-family:'Bebas Neue',Impact,sans-serif;
+      font-size:20px;letter-spacing:0.06em;
+      color:#fff;text-decoration:none;
+      transition:color 0.2s;white-space:nowrap;
+    }
+    .sbar-phone:hover{color:#4d8fff}
+    .sbar-phone-orb{
+      width:28px;height:28px;border-radius:50%;
+      background:linear-gradient(135deg,#1a6fff,#0a3aff);
+      display:flex;align-items:center;justify-content:center;
+      font-size:13px;flex-shrink:0;
+    }
+    .sbar-divider{width:1px;height:28px;background:rgba(255,255,255,0.1)}
+    .sbar-info{font-size:12px;color:rgba(255,255,255,0.4);font-weight:500;white-space:nowrap}
+    .sbar-info span{color:rgba(255,255,255,0.65)}
+    .sbar-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+    .sbar-quote{
+      background:#1a6fff;color:#fff;
+      padding:9px 22px;border-radius:6px;
+      font-size:13px;font-weight:700;
+      white-space:nowrap;text-decoration:none;
+      letter-spacing:0.02em;
+      transition:background 0.2s,transform 0.15s;
+      box-shadow:0 0 20px rgba(26,111,255,0.35);
+    }
+    .sbar-quote:hover{background:#4d8fff;transform:translateY(-1px)}
+    .sbar-email{
+      font-size:12px;color:rgba(255,255,255,0.4);
+      white-space:nowrap;text-decoration:none;
+      transition:color 0.2s;
+    }
+    .sbar-email:hover{color:#fff}
+    /* push page content up so bar doesn't cover footer */
+    body{padding-bottom:60px}
+    @media(max-width:680px){
+      #sticky-bar{padding:0 16px;gap:10px}
+      .sbar-info{display:none}
+      .sbar-divider{display:none}
+      .sbar-email{display:none}
+      .sbar-phone{font-size:17px}
+    }
+    @media(max-width:400px){
+      .sbar-phone span.sbar-num{display:none}
+    }
+  </style>
+  <div class="sbar-left">
+    <a href="tel:8664018600" class="sbar-phone">
+      <div class="sbar-phone-orb">📞</div>
+      <span class="sbar-num">866-401-8600</span>
+    </a>
+    <div class="sbar-divider"></div>
+    <div class="sbar-info">24/7 Live Support &nbsp;·&nbsp; <span>Nationwide Delivery</span></div>
+  </div>
+  <div class="sbar-right">
+    <a href="mailto:info@totalrentalsolutions.com" class="sbar-email">info@totalrentalsolutions.com</a>
+    <a href="#contact" class="sbar-quote">Request a Quote →</a>
+  </div>
+</div>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+},{passive:true});
+
+const ham = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('open');
+  mob.classList.toggle('open');
+  document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+});
+function closeMenu(){
+  ham.classList.remove('open');
+  mob.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+const revealEls = document.querySelectorAll('.reveal,.reveal-l,.reveal-r');
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.08});
+revealEls.forEach(el=>obs.observe(el));
+
+function handleSubmit(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('.fsubmit');
+  btn.textContent = '✓ Request Received — We\'ll be in touch soon!';
+  btn.style.background = 'linear-gradient(135deg,#166534,#15803d)';
+  btn.style.boxShadow = '0 4px 30px rgba(21,128,61,0.4)';
+  setTimeout(()=>{
+    btn.textContent = 'Send My Request →';
+    btn.style.background = '';
+    btn.style.boxShadow = '';
+    e.target.reset();
+  },4000);
+}
+
+// ── Service Worker ────────────────────────────────────────────
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/trsav/sw.js',{scope:'/trsav/'})
+      .then(r=>console.log('[TRSAV] SW:',r.scope))
+      .catch(e=>console.warn('[TRSAV] SW failed:',e));
+  });
+}
+
+// ── PWA Install Prompt ────────────────────────────────────────
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  if(!sessionStorage.getItem('pwa-dismissed')) showInstallBanner();
+});
+function showInstallBanner(){
+  if(document.getElementById('pwa-banner')) return;
+  const b=document.createElement('div');
+  b.id='pwa-banner';
+  b.innerHTML=`<style>
+    #pwa-banner{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);
+    background:rgba(10,26,74,0.95);backdrop-filter:blur(16px);
+    border:1px solid rgba(26,111,255,0.35);border-radius:14px;
+    padding:12px 18px;display:flex;align-items:center;gap:12px;
+    z-index:9999;box-shadow:0 8px 40px rgba(0,0,0,0.5);
+    max-width:calc(100vw - 48px);animation:pwaUp 0.4s ease;white-space:nowrap}
+    @keyframes pwaUp{from{opacity:0;transform:translateX(-50%) translateY(16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+    #pwa-banner img{width:36px;height:36px;border-radius:8px;flex-shrink:0}
+    #pwa-banner-txt{font-size:13px;color:rgba(255,255,255,0.8);flex:1}
+    #pwa-banner-txt b{color:#fff;display:block;font-size:14px}
+    #pwa-ibtn{background:#1a6fff;color:#fff;border:none;padding:8px 16px;
+    border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;
+    font-family:inherit;transition:background 0.2s;flex-shrink:0}
+    #pwa-ibtn:hover{background:#4d8fff}
+    #pwa-dbtn{background:none;border:none;color:rgba(255,255,255,0.35);
+    font-size:20px;cursor:pointer;padding:0 4px;line-height:1;flex-shrink:0}
+    #pwa-dbtn:hover{color:#fff}
+  </style>
+  <img src="/trsav/icons/icon-192x192.png" alt="TRSAV">
+  <div id="pwa-banner-txt"><b>Install TRSAV</b>Add to home screen for quick access</div>
+  <button id="pwa-ibtn">Install</button>
+  <button id="pwa-dbtn" aria-label="Dismiss">×</button>`;
+  document.body.appendChild(b);
+  document.getElementById('pwa-ibtn').onclick=async()=>{
+    if(!deferredPrompt)return;
+    deferredPrompt.prompt();
+    const{outcome}=await deferredPrompt.userChoice;
+    deferredPrompt=null; b.remove();
+  };
+  document.getElementById('pwa-dbtn').onclick=()=>{
+    b.remove(); sessionStorage.setItem('pwa-dismissed','1');
+  };
+}
+window.addEventListener('appinstalled',()=>{
+  const b=document.getElementById('pwa-banner');
+  if(b)b.remove();
+});
+</script>
+</body>
+</html>
