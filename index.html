@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TRSAV — Total Rental Solutions</title>
+<!-- TRSAV v1.4 — AI chat widget (Groq) with live agent handoff -->
 
 <!-- ── Favicons ─────────────────────────────────────────────── -->
 <link rel="icon" type="image/png" sizes="32x32" href="/trsav/icons/favicon-32x32.png">
@@ -324,7 +325,51 @@ section{padding:110px 56px}
 .equip-body{padding:20px}
 .equip-body h4{font-size:17px;font-weight:700;margin-bottom:6px}
 .equip-body p{font-size:13px;color:var(--dim);line-height:1.55;font-weight:300}
-.equip-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.08em;background:rgba(26,111,255,0.15);color:var(--blue-bright);padding:3px 10px;border-radius:100px;margin-top:12px;text-transform:uppercase}
+.equip-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.08em;background:rgba(26,111,255,0.15);color:var(--blue-bright);padding:3px 10px;border-radius:100px;text-transform:uppercase}
+.equip-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;gap:8px;flex-wrap:wrap}
+.equip-interest{
+  background:transparent;
+  border:1px solid rgba(26,111,255,0.35);
+  color:var(--blue-bright);
+  border-radius:100px;padding:5px 14px;
+  font-size:11px;font-weight:700;letter-spacing:0.04em;
+  cursor:pointer;font-family:inherit;
+  transition:all 0.2s;white-space:nowrap;
+  flex-shrink:0;
+}
+.equip-interest:hover{background:rgba(26,111,255,0.15);border-color:var(--blue-bright)}
+.equip-interest.active{
+  background:#1a6fff;border-color:#1a6fff;color:#fff;
+}
+.equip-interest.active::before{content:'✓  ';font-size:10px}
+.equip-card.interested{
+  border-color:rgba(26,111,255,0.55);
+  box-shadow:0 0 0 1px rgba(26,111,255,0.25), 0 8px 30px rgba(26,111,255,0.12);
+}
+.equip-card.interested .equip-svg{filter:brightness(1.1)}
+/* live quote-interest summary bar */
+#equip-summary{
+  display:none;
+  background:rgba(26,111,255,0.1);
+  border:1px solid rgba(26,111,255,0.3);
+  border-radius:10px;padding:14px 18px;
+  margin-bottom:16px;
+  animation:fadeIn 0.3s ease;
+}
+#equip-summary-label{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue-bright);margin-bottom:8px}
+#equip-summary-chips{display:flex;flex-wrap:wrap;gap:6px}
+.equip-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(26,111,255,0.15);border:1px solid rgba(26,111,255,0.3);
+  border-radius:100px;padding:4px 12px;
+  font-size:12px;font-weight:600;color:#fff;
+}
+.equip-chip-remove{
+  background:none;border:none;color:rgba(255,255,255,0.45);
+  cursor:pointer;font-size:14px;line-height:1;padding:0;
+  transition:color 0.15s;
+}
+.equip-chip-remove:hover{color:#fff}
 
 /* WHY */
 .why-sec{background:var(--blue-deep)}
@@ -733,7 +778,10 @@ footer{background:#030a1e;padding:64px 56px 32px;border-top:1px solid rgba(255,2
       <div class="equip-body">
         <h4>Audio Equipment</h4>
         <p>PA systems, wireless mics, mixers, line arrays and monitoring for any venue size.</p>
-        <span class="equip-tag">Most Rented</span>
+        <div class="equip-footer">
+          <span class="equip-tag">Most Rented</span>
+          <button class="equip-interest" data-cat="Audio Equipment" onclick="toggleEquipInterest(this)">+ Add to Quote</button>
+        </div>
       </div>
     </div>
 
@@ -779,6 +827,9 @@ footer{background:#030a1e;padding:64px 56px 32px;border-top:1px solid rgba(255,2
       <div class="equip-body">
         <h4>Projectors</h4>
         <p>Short-throw to long-throw, 4K laser projectors from all leading brands.</p>
+        <div class="equip-footer">
+          <button class="equip-interest" data-cat="Projectors" onclick="toggleEquipInterest(this)">+ Add to Quote</button>
+        </div>
       </div>
     </div>
 
@@ -824,7 +875,10 @@ footer{background:#030a1e;padding:64px 56px 32px;border-top:1px solid rgba(255,2
       <div class="equip-body">
         <h4>LED Video Walls</h4>
         <p>Modular LED panels for stunning indoor and outdoor displays at any scale.</p>
-        <span class="equip-tag">High Demand</span>
+        <div class="equip-footer">
+          <span class="equip-tag">High Demand</span>
+          <button class="equip-interest" data-cat="LED Video Walls" onclick="toggleEquipInterest(this)">+ Add to Quote</button>
+        </div>
       </div>
     </div>
 
@@ -865,6 +919,9 @@ footer{background:#030a1e;padding:64px 56px 32px;border-top:1px solid rgba(255,2
       <div class="equip-body">
         <h4>Touch Screens</h4>
         <p>Interactive touchscreen displays for kiosks, wayfinding, and presentations.</p>
+        <div class="equip-footer">
+          <button class="equip-interest" data-cat="Touch Screens" onclick="toggleEquipInterest(this)">+ Add to Quote</button>
+        </div>
       </div>
     </div>
 
@@ -917,6 +974,9 @@ footer{background:#030a1e;padding:64px 56px 32px;border-top:1px solid rgba(255,2
       <div class="equip-body">
         <h4>Computers &amp; Laptops</h4>
         <p>Desktops, laptops, all-in-ones and networking — fully configured for your event.</p>
+        <div class="equip-footer">
+          <button class="equip-interest" data-cat="Computers &amp; Laptops" onclick="toggleEquipInterest(this)">+ Add to Quote</button>
+        </div>
       </div>
     </div>
 
@@ -970,6 +1030,9 @@ footer{background:#030a1e;padding:64px 56px 32px;border-top:1px solid rgba(255,2
       <div class="equip-body">
         <h4>Lighting &amp; Stage</h4>
         <p>Stage lighting, truss systems, and rigging for professional event production.</p>
+        <div class="equip-footer">
+          <button class="equip-interest" data-cat="Lighting &amp; Stage" onclick="toggleEquipInterest(this)">+ Add to Quote</button>
+        </div>
       </div>
     </div>
 
@@ -1027,6 +1090,9 @@ footer{background:#030a1e;padding:64px 56px 32px;border-top:1px solid rgba(255,2
       <div class="equip-body">
         <h4>Mobile Devices</h4>
         <p>iPads, tablets, and mobile devices for registration, surveys, and audience engagement.</p>
+        <div class="equip-footer">
+          <button class="equip-interest" data-cat="Mobile Devices" onclick="toggleEquipInterest(this)">+ Add to Quote</button>
+        </div>
       </div>
     </div>
 
@@ -1084,6 +1150,9 @@ footer{background:#030a1e;padding:64px 56px 32px;border-top:1px solid rgba(255,2
       <div class="equip-body">
         <h4>Kiosks &amp; Digital Signage</h4>
         <p>Standalone kiosks and digital signage solutions for wayfinding and brand activation.</p>
+        <div class="equip-footer">
+          <button class="equip-interest" data-cat="Kiosks &amp; Digital Signage" onclick="toggleEquipInterest(this)">+ Add to Quote</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1279,24 +1348,77 @@ footer{background:#030a1e;padding:64px 56px 32px;border-top:1px solid rgba(255,2
           <label>Phone</label>
           <input type="tel" placeholder="(555) 000-0000">
         </div>
+
+        <!-- Event Type -->
         <div class="fg">
           <label>Event Type</label>
-          <select>
+          <select id="eventTypeSelect" onchange="onEventType(this.value)">
             <option value="" disabled selected>Select your event type</option>
-            <option>Trade Show</option>
-            <option>Corporate Meeting</option>
-            <option>Event Production</option>
-            <option>Pharmaceutical Event</option>
-            <option>Conference / Summit</option>
-            <option>Other</option>
+            <option value="tradeshow">Trade Show</option>
+            <option value="corporate">Corporate Annual Event</option>
+            <option value="association">Association / Large Meeting</option>
+            <option value="breakout">Breakout / Training Session</option>
+            <option value="gala">Gala / Award Ceremony</option>
+            <option value="pharma">Pharmaceutical Event</option>
+            <option value="other">Other</option>
           </select>
         </div>
+
+        <!-- Package Recommendations — shown after event type chosen -->
+        <div id="pkg-section" style="display:none">
+          <div id="pkg-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px"></div>
+          <div class="fg">
+            <label>Recommended Package</label>
+            <select id="pkgSelect">
+              <option value="" disabled selected>Choose a package — or describe your own below</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Equipment interest summary — populated from catalog clicks -->
+        <div id="equip-summary">
+          <div id="equip-summary-label">📦 Equipment categories you flagged</div>
+          <div id="equip-summary-chips"></div>
+        </div>
+
+        <!-- Requirements -->
         <div class="fg">
-          <label>Rental Requirements</label>
-          <textarea placeholder="Tell us about your event — dates, location, equipment needed, attendee count, anything that helps us quote you accurately..."></textarea>
+          <label>Additional Requirements</label>
+          <textarea id="reqText" placeholder="Tell us about your event — dates, location, attendee count, anything that helps us quote you accurately..."></textarea>
         </div>
         <button type="submit" class="fsubmit">Send My Request →</button>
       </form>
+
+      <style>
+        #pkg-section{animation:fadeIn 0.35s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+        .pkg-card{
+          background:rgba(26,111,255,0.07);
+          border:1px solid rgba(26,111,255,0.18);
+          border-radius:10px;padding:14px 16px;
+          cursor:pointer;transition:all 0.2s;
+          display:flex;flex-direction:column;gap:4px;
+          position:relative;
+        }
+        .pkg-card:hover{background:rgba(26,111,255,0.14);border-color:rgba(26,111,255,0.4);transform:translateY(-2px)}
+        .pkg-card.selected{background:rgba(26,111,255,0.18);border-color:#1a6fff;box-shadow:0 0 0 2px rgba(26,111,255,0.25)}
+        .pkg-card.selected::after{
+          content:'✓';position:absolute;top:10px;right:12px;
+          width:20px;height:20px;border-radius:50%;
+          background:#1a6fff;color:#fff;
+          font-size:11px;font-weight:700;
+          display:flex;align-items:center;justify-content:center;
+          line-height:20px;text-align:center;
+        }
+        .pkg-card-title{font-size:13px;font-weight:700;color:#fff;line-height:1.3}
+        .pkg-card-items{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.5;margin-top:2px}
+        .pkg-divider{
+          font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+          color:var(--blue-bright);display:flex;align-items:center;gap:10px;margin:4px 0 10px;
+        }
+        .pkg-divider::before,.pkg-divider::after{content:'';flex:1;height:1px;background:rgba(26,111,255,0.2)}
+        @media(max-width:560px){#pkg-cards{grid-template-columns:1fr}}
+      </style>
     </div>
   </div>
 </section>
@@ -1457,6 +1579,272 @@ const obs = new IntersectionObserver((entries)=>{
 },{threshold:0.08});
 revealEls.forEach(el=>obs.observe(el));
 
+// ── Package Playbook Data ─────────────────────────────────────
+const PACKAGES = {
+  tradeshow: {
+    label:'Trade Show Exhibitor',
+    hint:'High ambient light · Small footprint · High traffic',
+    packs:[
+      {id:'ts-impact', title:'Booth Impact Package',       items:'85" 4K LED Display · Touchscreen Kiosk · iPad Lead Capture Stand · Branded Charging Station'},
+      {id:'ts-wall',   title:'Video Wall Package',          items:'Seamless LED Video Wall · Portrait Digital Posters · Directional Sound Shower Speakers'},
+      {id:'ts-full',   title:'Full Exhibitor Package',      items:'LED Wall + Kiosks + Audio · High-Speed Mesh Wi-Fi Router · iPad Stands · All-in-one Setup'},
+      {id:'ts-connect',title:'Connectivity Add-On',         items:'High-Speed Mesh Wi-Fi · Branded Charging Stations · USB-C Adapter Kits'},
+    ]
+  },
+  corporate: {
+    label:'Corporate Annual Event',
+    hint:'Ballroom / Hotel · Professional aesthetic · High stakes',
+    packs:[
+      {id:'co-stage',  title:'Stage & Presentation',        items:'UST Projectors · 98" Professional Monitors · Confidence Monitors · Logo/Gobo Projectors'},
+      {id:'co-audio',  title:'Pro Audio Package',            items:'Shure ULX-D Wireless · Lavalier Mics · Presidential Podium Mic · 12–24 Channel Mixer'},
+      {id:'co-full',   title:'Full Corporate Production',    items:'Stage + Audio + Switcher · Pipe & Drape Backdrop · PerfectCue Clickers · Barco/Roland Switcher'},
+      {id:'co-decor',  title:'Environment & Decor Add-On',  items:'Pipe & Drape Backdrops · Up-lighting · Moving Head Spotlights'},
+    ]
+  },
+  association: {
+    label:'Association / Large Meeting',
+    hint:'General sessions · 500+ attendees · Educational',
+    packs:[
+      {id:'as-screen', title:'General Session Screens',     items:'Dual 16x9 Projection Screens · Laser Projectors 10k+ Lumens · Distribution Amps'},
+      {id:'as-audio',  title:'Large Venue Audio',           items:'Line Array Speaker Systems · Subwoofers · Catchbox Throwable Mics · Push-to-Talk Delegate Mics'},
+      {id:'as-stream', title:'Streaming & Recording',       items:'Video Recording/Streaming Kits · Laptop DI Boxes · Press Feed Distribution Amps'},
+      {id:'as-full',   title:'Full General Session',        items:'Screens + Laser Projectors + Line Array Audio + Streaming + Slide Advancers'},
+    ]
+  },
+  breakout: {
+    label:'Breakout / Training Session',
+    hint:'Small rooms · Collaborative · Interactive',
+    packs:[
+      {id:'br-display', title:'Room Display Package',       items:'55"–75" Displays on Rolling Carts · HDMI/USB-C Adapter Kits · Table-top Power Strips'},
+      {id:'br-interact',title:'Interactive Whiteboard Kit', items:'Interactive Whiteboard (Newline/Samsung Flip) · Markers & Easels · Collaborative Display'},
+      {id:'br-audio',   title:'Compact Audio Package',      items:'All-in-One Soundbar · Handheld Wireless Mic · Computer Audio Interface'},
+      {id:'br-full',    title:'Full Breakout Room Kit',     items:'Display + Whiteboard + Soundbar + Adapters + Power Strips · Flipcharts & Easels'},
+    ]
+  },
+  gala: {
+    label:'Gala / Award Ceremony',
+    hint:'Evening · Mood-focused · High production',
+    packs:[
+      {id:'ga-visual',  title:'Gala Visual Package',        items:'Large Center LED Screen · Social Media Live Feed Walls · Scenic Panels'},
+      {id:'ga-audio',   title:'High-End Audio Package',     items:'High-End PA for Live Band · Integrated Audio for Video Tributes · Wireless Mics'},
+      {id:'ga-atmos',   title:'Atmosphere & Lighting',      items:'Battery-Powered Up-lighting · Moving Head Spotlights · Hazer/Fog Machines'},
+      {id:'ga-full',    title:'Full Gala Production',       items:'LED Screen + Social Walls + Live Band PA + Up-lighting + Haze + Moving Heads'},
+    ]
+  },
+  pharma: {
+    label:'Pharmaceutical Event',
+    hint:'Compliant · Polished · Speaker-focused',
+    packs:[
+      {id:'ph-present', title:'Speaker Presentation',       items:'98" Professional Monitor · Confidence Monitors · Lavalier Mics · Presentation Clickers'},
+      {id:'ph-hybrid',  title:'Hybrid Meeting Package',     items:'Video Conferencing System · Streaming Kit · Dual Screens · Wireless Mics'},
+      {id:'ph-advisory',title:'Advisory Board Package',     items:'Push-to-Talk Delegate Mics · 55"–75" Displays · Laptop + Adapters · Recording Kit'},
+      {id:'ph-full',    title:'Full Pharma Event Package',  items:'Stage AV + Speaker Audio + Recording + iPads for Registration'},
+    ]
+  },
+  other: {
+    label:'Custom Event',
+    hint:'Tell us about your needs below',
+    packs:[
+      {id:'ot-av',      title:'Standard AV Starter',        items:'Projector or Display · Wireless Mic · Laptop Connectivity · Basic Audio'},
+      {id:'ot-full',    title:'Full-Service AV',             items:'Custom Display Setup · Pro Audio · Lighting · On-site Tech Support'},
+      {id:'ot-display', title:'Display & Signage Only',      items:'LED Displays · Digital Signage · Kiosks · iPad Stands'},
+      {id:'ot-audio',   title:'Audio Only',                  items:'PA System · Wireless Mics · Mixer · Monitor Speakers'},
+    ]
+  }
+};
+
+let selectedPkg = null;
+
+function onEventType(val){
+  const data = PACKAGES[val];
+  if(!data) return;
+  const section = document.getElementById('pkg-section');
+  const cards   = document.getElementById('pkg-cards');
+  const sel     = document.getElementById('pkgSelect');
+  const req     = document.getElementById('reqText');
+  selectedPkg   = null;
+  req.dataset.auto = '0';
+
+  // Build visual cards
+  cards.innerHTML = '';
+  data.packs.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'pkg-card';
+    card.dataset.id = p.id;
+    card.innerHTML = `<div class="pkg-card-title">${p.title}</div><div class="pkg-card-items">${p.items}</div>`;
+    card.onclick = () => selectPkg(p, val);
+    cards.appendChild(card);
+  });
+
+  // Build select dropdown
+  sel.innerHTML = '<option value="" disabled selected>Choose a package — or describe your own below</option>';
+  data.packs.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.id; opt.textContent = p.title;
+    sel.appendChild(opt);
+  });
+  const custom = document.createElement('option');
+  custom.value = 'custom';
+  custom.textContent = "Custom / I'll describe my needs below";
+  sel.appendChild(custom);
+
+  sel.onchange = () => {
+    const p = data.packs.find(x => x.id === sel.value);
+    if(p){
+      document.querySelectorAll('.pkg-card').forEach(c=>c.classList.remove('selected'));
+      document.querySelector(`.pkg-card[data-id="${p.id}"]`)?.classList.add('selected');
+      prefillReq(p); selectedPkg = p;
+    } else {
+      document.querySelectorAll('.pkg-card').forEach(c=>c.classList.remove('selected'));
+      selectedPkg = null;
+    }
+  };
+
+  req.placeholder = `${data.hint}\n\nAdd event dates, location, attendee count, or anything that helps us quote you fast...`;
+  section.style.display = 'block';
+  section.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function selectPkg(p, eventVal){
+  document.querySelectorAll('.pkg-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelector(`.pkg-card[data-id="${p.id}"]`)?.classList.add('selected');
+  document.getElementById('pkgSelect').value = p.id;
+  prefillReq(p);
+  selectedPkg = p;
+}
+
+function prefillReq(p){
+  const req = document.getElementById('reqText');
+  if(req.value.trim()==='' || req.dataset.auto==='1'){
+    req.value = `Interested in: ${p.title}\nIncludes: ${p.items}\n\n`;
+    req.dataset.auto = '1';
+    req.focus();
+    req.setSelectionRange(req.value.length, req.value.length);
+  }
+}
+
+// ── Equipment Interest Toggle ─────────────────────────────────
+const equipInterests = new Set();
+
+function toggleEquipInterest(btn){
+  const cat  = btn.dataset.cat;
+  const card = btn.closest('.equip-card');
+  const isOn = equipInterests.has(cat);
+
+  if(isOn){
+    equipInterests.delete(cat);
+    btn.classList.remove('active');
+    card.classList.remove('interested');
+    btn.textContent = '+ Add to Quote';
+  } else {
+    equipInterests.add(cat);
+    btn.classList.add('active');
+    card.classList.add('interested');
+    btn.textContent = 'Interested';
+  }
+  syncEquipSummary();
+}
+
+function syncEquipSummary(){
+  const summary = document.getElementById('equip-summary');
+  const chips   = document.getElementById('equip-summary-chips');
+  const req     = document.getElementById('reqText');
+
+  if(equipInterests.size === 0){
+    summary.style.display = 'none';
+    // Remove equipment line from textarea if it was auto-added
+    if(req && req.dataset.equipLine){
+      req.value = req.value.replace(req.dataset.equipLine, '').trimStart();
+      delete req.dataset.equipLine;
+    }
+    return;
+  }
+
+  // Render chips
+  chips.innerHTML = '';
+  equipInterests.forEach(cat => {
+    const chip = document.createElement('span');
+    chip.className = 'equip-chip';
+    chip.innerHTML = `${cat}<button class="equip-chip-remove" onclick="removeEquipChip('${cat.replace(/&amp;/g,'&')}',this)" aria-label="Remove">×</button>`;
+    chips.appendChild(chip);
+  });
+  summary.style.display = 'block';
+
+  // Sync to textarea
+  if(req){
+    const line = `Equipment interested in: ${[...equipInterests].join(', ')}`;
+    if(req.dataset.equipLine){
+      req.value = req.value.replace(req.dataset.equipLine, line);
+    } else {
+      const prefix = req.value.trim() ? req.value.trimEnd() + '\n\n' : '';
+      req.value = prefix + line + '\n';
+    }
+    req.dataset.equipLine = line;
+    req.dataset.auto = '0'; // don't let package prefill clobber this
+  }
+
+  // Scroll quote form into view gently if user is still on equipment section
+  const contactSec = document.getElementById('contact');
+  if(contactSec){
+    const rect = contactSec.getBoundingClientRect();
+    if(rect.top > window.innerHeight){
+      // Only show a nudge toast — don't auto-scroll away from the catalog
+      showEquipNudge();
+    }
+  }
+}
+
+function removeEquipChip(cat, btn){
+  // Find and untoggle the card button
+  document.querySelectorAll('.equip-interest').forEach(b => {
+    if(b.dataset.cat === cat || b.dataset.cat.replace(/&amp;/g,'&') === cat){
+      b.classList.remove('active');
+      b.closest('.equip-card').classList.remove('interested');
+      b.textContent = '+ Add to Quote';
+    }
+  });
+  equipInterests.delete(cat);
+  syncEquipSummary();
+}
+
+// Small nudge toast pointing user to quote form
+let nudgeShown = false;
+function showEquipNudge(){
+  if(nudgeShown) return;
+  nudgeShown = true;
+  const toast = document.createElement('div');
+  toast.id = 'equip-nudge';
+  toast.innerHTML = `
+    <style>
+      #equip-nudge{
+        position:fixed;bottom:76px;right:24px;z-index:500;
+        background:rgba(10,26,74,0.97);backdrop-filter:blur(12px);
+        border:1px solid rgba(26,111,255,0.4);border-radius:12px;
+        padding:14px 18px;max-width:260px;
+        box-shadow:0 8px 32px rgba(0,0,0,0.5);
+        animation:slideInR 0.4s ease;
+      }
+      @keyframes slideInR{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+      #equip-nudge p{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.5;margin-bottom:10px}
+      #equip-nudge a{
+        display:block;background:#1a6fff;color:#fff;text-align:center;
+        padding:8px 16px;border-radius:7px;font-size:13px;font-weight:700;
+        text-decoration:none;transition:background 0.2s;
+      }
+      #equip-nudge a:hover{background:#4d8fff}
+      #equip-nudge-close{
+        position:absolute;top:8px;right:12px;background:none;border:none;
+        color:rgba(255,255,255,0.3);font-size:16px;cursor:pointer;
+      }
+    </style>
+    <button id="equip-nudge-close" onclick="this.closest('#equip-nudge').remove()">×</button>
+    <p>You've flagged equipment categories — ready to get a quote?</p>
+    <a href="#contact" onclick="document.getElementById('equip-nudge').remove()">Go to Quote Form →</a>
+  `;
+  document.body.appendChild(toast);
+  setTimeout(()=>{ const n=document.getElementById('equip-nudge'); if(n) n.remove(); nudgeShown=false; }, 6000);
+}
+
 function handleSubmit(e){
   e.preventDefault();
   const btn = e.target.querySelector('.fsubmit');
@@ -1530,5 +1918,650 @@ window.addEventListener('appinstalled',()=>{
   if(b)b.remove();
 });
 </script>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TRSAV CHAT v1.4                                            -->
+<!-- Groq AI default · Live agent handoff via Odoo Discuss      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<style>
+/* ── CONFIG: swap your keys here ───────────────────────────── */
+/* GROQ_KEY set in script below                                 */
+/* ODOO_LIVECHAT_CHANNEL set in script below                    */
+
+/* ── FAB button ─────────────────────────────────────────────── */
+#chat-fab{
+  position:fixed;bottom:76px;right:24px;z-index:300;
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#1a6fff,#0a3aff);
+  border:none;cursor:pointer;
+  box-shadow:0 4px 24px rgba(26,111,255,0.5);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 0.2s,box-shadow 0.2s;
+  font-size:22px;
+}
+#chat-fab:hover{transform:scale(1.08);box-shadow:0 6px 32px rgba(26,111,255,0.7)}
+#chat-fab.open{background:linear-gradient(135deg,#334,#222)}
+#chat-unread{
+  position:absolute;top:-2px;right:-2px;
+  width:18px;height:18px;border-radius:50%;
+  background:#e8401c;color:#fff;
+  font-size:10px;font-weight:700;line-height:18px;text-align:center;
+  display:none;border:2px solid #060f2e;
+  font-family:'Figtree',sans-serif;
+}
+#chat-unread.show{display:block}
+
+/* pulse ring when offline agent message arrives */
+@keyframes fabPulse{0%,100%{box-shadow:0 4px 24px rgba(26,111,255,0.5)}50%{box-shadow:0 4px 40px rgba(26,111,255,0.9),0 0 0 8px rgba(26,111,255,0.15)}}
+#chat-fab.pulse{animation:fabPulse 1.5s ease-in-out 3}
+
+/* ── Chat panel ─────────────────────────────────────────────── */
+#chat-panel{
+  position:fixed;bottom:142px;right:24px;z-index:299;
+  width:360px;max-width:calc(100vw - 32px);
+  height:520px;max-height:calc(100vh - 180px);
+  background:#070f2a;
+  border:1px solid rgba(26,111,255,0.3);
+  border-radius:16px;
+  display:flex;flex-direction:column;
+  box-shadow:0 16px 60px rgba(0,0,0,0.6);
+  overflow:hidden;
+  transform:scale(0.92) translateY(16px);
+  opacity:0;pointer-events:none;
+  transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),opacity 0.2s;
+  font-family:'Figtree',system-ui,sans-serif;
+}
+#chat-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+
+/* header */
+#chat-header{
+  background:linear-gradient(135deg,#0a1a4a,#0d2060);
+  padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid rgba(26,111,255,0.2);
+  flex-shrink:0;
+}
+#chat-avatar{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#1a6fff,#0a3aff);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;position:relative;
+}
+#chat-status-dot{
+  position:absolute;bottom:1px;right:1px;
+  width:9px;height:9px;border-radius:50%;
+  background:#22c55e;border:2px solid #0a1a4a;
+  transition:background 0.3s;
+}
+#chat-status-dot.away{background:#f59e0b}
+#chat-status-dot.offline{background:#6b7db3}
+#chat-header-info{flex:1;min-width:0}
+#chat-header-name{font-size:14px;font-weight:700;color:#fff}
+#chat-header-status{font-size:11px;color:rgba(255,255,255,0.5);margin-top:1px;transition:color 0.3s}
+#chat-header-status.live{color:#4ade80}
+#chat-close{
+  background:none;border:none;color:rgba(255,255,255,0.35);
+  font-size:20px;cursor:pointer;padding:4px;line-height:1;
+  transition:color 0.2s;flex-shrink:0;
+}
+#chat-close:hover{color:#fff}
+
+/* mode toggle bar */
+#chat-mode-bar{
+  display:flex;border-bottom:1px solid rgba(26,111,255,0.15);
+  flex-shrink:0;
+}
+.chat-mode-btn{
+  flex:1;padding:9px;font-size:12px;font-weight:600;
+  background:none;border:none;cursor:pointer;
+  color:rgba(255,255,255,0.4);letter-spacing:0.04em;
+  transition:all 0.2s;font-family:inherit;
+  border-bottom:2px solid transparent;
+}
+.chat-mode-btn.active{color:#4d8fff;border-bottom-color:#1a6fff;background:rgba(26,111,255,0.06)}
+.chat-mode-btn:hover:not(.active){color:rgba(255,255,255,0.7)}
+
+/* messages area */
+#chat-messages{
+  flex:1;overflow-y:auto;padding:16px;
+  display:flex;flex-direction:column;gap:10px;
+  scrollbar-width:thin;scrollbar-color:rgba(26,111,255,0.3) transparent;
+}
+#chat-messages::-webkit-scrollbar{width:4px}
+#chat-messages::-webkit-scrollbar-thumb{background:rgba(26,111,255,0.3);border-radius:2px}
+
+.msg{display:flex;gap:8px;align-items:flex-end;animation:msgIn 0.25s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.msg.user{flex-direction:row-reverse}
+.msg-avatar{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  background:rgba(26,111,255,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:12px;
+}
+.msg.user .msg-avatar{background:rgba(255,255,255,0.1)}
+.msg-bubble{
+  max-width:75%;padding:9px 13px;border-radius:12px;
+  font-size:13px;line-height:1.55;color:#fff;
+}
+.msg.bot .msg-bubble{background:#0d2050;border-radius:12px 12px 12px 3px}
+.msg.user .msg-bubble{background:#1a6fff;border-radius:12px 12px 3px 12px}
+.msg.agent .msg-bubble{background:#0d4a2a;border-radius:12px 12px 12px 3px;border:1px solid rgba(34,197,94,0.2)}
+.msg-time{font-size:10px;color:rgba(255,255,255,0.25);margin-top:3px;text-align:right}
+
+/* typing indicator */
+#chat-typing{display:none;align-items:center;gap:8px;padding:0 4px}
+#chat-typing.show{display:flex}
+.typing-dot{width:6px;height:6px;border-radius:50%;background:#4d8fff;animation:typingBounce 1.2s ease-in-out infinite}
+.typing-dot:nth-child(2){animation-delay:0.2s}
+.typing-dot:nth-child(3){animation-delay:0.4s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+/* agent availability panel */
+#agent-panel{
+  display:none;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px 20px;gap:16px;
+  flex:1;text-align:center;
+}
+#agent-panel.show{display:flex}
+#agent-panel h4{font-size:15px;font-weight:700;color:#fff}
+#agent-panel p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6}
+.agent-status-card{
+  width:100%;background:rgba(26,111,255,0.08);
+  border:1px solid rgba(26,111,255,0.2);
+  border-radius:10px;padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+}
+.agent-status-card .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dot-green{background:#22c55e;box-shadow:0 0 6px rgba(34,197,94,0.5)}
+.dot-amber{background:#f59e0b;box-shadow:0 0 6px rgba(245,158,11,0.4)}
+.agent-status-card-text{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5;text-align:left}
+.agent-status-card-text strong{color:#fff;display:block;font-size:14px;margin-bottom:2px}
+#connect-agent-btn{
+  width:100%;background:#1a6fff;color:#fff;border:none;
+  padding:11px;border-radius:8px;font-size:14px;font-weight:700;
+  cursor:pointer;font-family:inherit;transition:all 0.2s;
+}
+#connect-agent-btn:hover{background:#4d8fff;transform:translateY(-1px)}
+#connect-agent-btn:disabled{background:#1a3060;color:rgba(255,255,255,0.3);cursor:default;transform:none}
+
+/* quick replies */
+#chat-quick{
+  display:flex;flex-wrap:wrap;gap:6px;
+  padding:8px 16px 4px;flex-shrink:0;
+}
+.qr-btn{
+  background:rgba(26,111,255,0.1);
+  border:1px solid rgba(26,111,255,0.25);
+  color:#4d8fff;border-radius:100px;
+  padding:5px 12px;font-size:11px;font-weight:600;
+  cursor:pointer;font-family:inherit;transition:all 0.2s;
+  white-space:nowrap;
+}
+.qr-btn:hover{background:rgba(26,111,255,0.2);border-color:rgba(26,111,255,0.5)}
+
+/* input bar */
+#chat-input-row{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 14px;border-top:1px solid rgba(26,111,255,0.15);
+  flex-shrink:0;
+}
+#chat-input{
+  flex:1;background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;padding:9px 12px;
+  font-size:13px;color:#fff;font-family:inherit;outline:none;
+  resize:none;line-height:1.4;max-height:80px;
+  transition:border-color 0.2s;
+}
+#chat-input::placeholder{color:rgba(255,255,255,0.25)}
+#chat-input:focus{border-color:rgba(26,111,255,0.5)}
+#chat-send{
+  width:36px;height:36px;border-radius:8px;
+  background:#1a6fff;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;transition:all 0.2s;flex-shrink:0;
+}
+#chat-send:hover{background:#4d8fff}
+#chat-send:disabled{background:#1a3060;cursor:default}
+
+/* powered by bar */
+#chat-powered{
+  text-align:center;padding:5px;
+  font-size:10px;color:rgba(255,255,255,0.18);
+  letter-spacing:0.04em;flex-shrink:0;
+}
+
+@media(max-width:420px){
+  #chat-panel{right:12px;width:calc(100vw - 24px);bottom:130px}
+  #chat-fab{right:12px;bottom:72px}
+}
+</style>
+
+<!-- FAB -->
+<button id="chat-fab" onclick="toggleChat()" aria-label="Chat with TRS">
+  <span id="chat-fab-icon">💬</span>
+  <span id="chat-unread"></span>
+</button>
+
+<!-- Chat Panel -->
+<div id="chat-panel">
+  <!-- Header -->
+  <div id="chat-header">
+    <div id="chat-avatar">
+      🎤
+      <div id="chat-status-dot"></div>
+    </div>
+    <div id="chat-header-info">
+      <div id="chat-header-name">TRS Support</div>
+      <div id="chat-header-status">AI Assistant · Typically replies instantly</div>
+    </div>
+    <button id="chat-close" onclick="toggleChat()" aria-label="Close">×</button>
+  </div>
+
+  <!-- Mode toggle -->
+  <div id="chat-mode-bar">
+    <button class="chat-mode-btn active" id="btn-ai" onclick="switchMode('ai')">🤖 AI Assistant</button>
+    <button class="chat-mode-btn" id="btn-agent" onclick="switchMode('agent')">👤 Live Agent</button>
+  </div>
+
+  <!-- AI messages view -->
+  <div id="chat-ai-view" style="display:flex;flex-direction:column;flex:1;overflow:hidden;min-height:0">
+    <div id="chat-messages"></div>
+    <div id="chat-typing" style="padding:0 16px 8px">
+      <div class="msg-avatar">🎤</div>
+      <div style="display:flex;gap:4px;padding:10px 13px;background:#0d2050;border-radius:12px">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+    </div>
+    <div id="chat-quick"></div>
+    <div id="chat-input-row">
+      <textarea id="chat-input" placeholder="Ask about AV rentals, pricing, delivery…" rows="1"
+        onkeydown="chatKeydown(event)" oninput="autoResize(this)"></textarea>
+      <button id="chat-send" onclick="sendMessage()" aria-label="Send">➤</button>
+    </div>
+  </div>
+
+  <!-- Live agent view -->
+  <div id="chat-agent-view" style="display:none;flex-direction:column;flex:1;overflow:hidden;min-height:0">
+    <div id="agent-panel" class="show">
+      <div id="agent-status-indicator" class="agent-status-card">
+        <div class="dot dot-green" id="agent-dot"></div>
+        <div class="agent-status-card-text">
+          <strong id="agent-status-title">Checking availability…</strong>
+          <span id="agent-status-sub">One moment</span>
+        </div>
+      </div>
+      <h4>Connect with a TRS specialist</h4>
+      <p id="agent-desc">Our team handles trade shows, corporate events, and pharma meetings nationwide — they know exactly what you need.</p>
+      <button id="connect-agent-btn" onclick="connectToAgent()" disabled>Checking…</button>
+      <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:-8px">Or keep chatting with the AI assistant</p>
+    </div>
+  </div>
+
+  <div id="chat-powered">Powered by Groq · groq.com</div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// TRSAV Chat v1.4 Configuration
+// Replace these values before deploying
+// ─────────────────────────────────────────────────────────────
+const CHAT_CONFIG = {
+  GROQ_API_KEY: 'YOUR_GROQ_API_KEY_HERE',        // get free key: console.groq.com
+  GROQ_MODEL:   'llama3-8b-8192',                 // fast, free tier
+  ODOO_URL:     'https://your-odoo.com',           // your Odoo instance URL
+  ODOO_CHANNEL: 'YOUR_LIVECHAT_CHANNEL_ID',        // Odoo Live Chat channel ID
+  // To check agent availability, set this to your Odoo Live Chat availability endpoint
+  // or use a simple manual flag: set AGENT_ONLINE to true/false
+  AGENT_ONLINE_MANUAL: true,                       // set false when team is offline
+};
+
+// TRS knowledge base — the AI knows all this about your business
+const TRS_SYSTEM_PROMPT = `You are the TRS AI Assistant for Total Rental Solutions, a premium AV and technology rental company based in Orlando, FL that serves events nationwide.
+
+ABOUT TRS:
+- 15+ years in the AV rental business
+- Nationwide delivery within 24 hours, same-day in 50+ US cities
+- 24/7 live technical support
+- Services: Trade Shows, Corporate Meetings, Event Production, Pharmaceutical Events, Conferences
+- Equipment: Audio (PA systems, wireless mics, mixers, line arrays), Projectors (4K laser, short/long throw), LED Video Walls (modular, indoor/outdoor), Touch Screens & Kiosks, Computers & Laptops, Lighting & Stage (truss, moving heads, up-lighting), Mobile Devices (iPads, tablets), Digital Signage
+- Contact: 866-401-8600 (toll free), 407-478-8600 (local)
+- Website: totalrentalsolutions.com
+
+PACKAGES BY EVENT TYPE:
+- Trade Shows: Booth Impact (85" 4K LED, kiosk, iPad stands), Video Wall, Full Exhibitor
+- Corporate Events: Stage & Presentation (UST projectors, confidence monitors), Pro Audio (Shure ULX-D, lavalier mics), Full Corporate Production
+- Large Meetings (500+ attendees): Dual projection screens, Laser projectors 10k+ lumens, Line array audio, Streaming kits
+- Galas & Award Ceremonies: LED screen, social media walls, high-end PA, atmospheric lighting
+- Pharmaceutical Events: Speaker presentation, hybrid meeting, advisory board packages
+
+YOUR ROLE:
+- Answer questions about equipment, services, pricing guidance, delivery, and capabilities
+- Be warm, professional, and confident — you represent a premium brand
+- For pricing: explain that quotes are custom (event size, duration, location all factor in) and encourage them to request a quote
+- If asked something you don't know, offer to connect them with a live agent
+- Keep responses concise — 2-3 sentences max unless they ask for detail
+- Never make up specific prices — always say "contact us for a custom quote"
+- If the visitor seems ready to book or has specific requirements, encourage them to use the quote form or call 866-401-8600
+
+TONE: Professional, helpful, energetic. You're excited to help make their event amazing.`;
+
+// ─────────────────────────────────────────────────────────────
+// State
+// ─────────────────────────────────────────────────────────────
+let chatOpen   = false;
+let chatMode   = 'ai';
+let chatHistory = [];
+let agentOnline = false;
+let unreadCount = 0;
+let isTyping    = false;
+
+const QUICK_REPLIES = [
+  'What equipment do you rent?',
+  'How fast can you deliver?',
+  'Do you do trade shows?',
+  'Get a quote',
+  'Call me back',
+];
+
+// ─────────────────────────────────────────────────────────────
+// Open / close
+// ─────────────────────────────────────────────────────────────
+function toggleChat(){
+  chatOpen = !chatOpen;
+  document.getElementById('chat-panel').classList.toggle('open', chatOpen);
+  document.getElementById('chat-fab').classList.toggle('open', chatOpen);
+  document.getElementById('chat-fab-icon').textContent = chatOpen ? '×' : '💬';
+  if(chatOpen){
+    clearUnread();
+    if(chatHistory.length === 0) initChat();
+    checkAgentStatus();
+    setTimeout(()=>document.getElementById('chat-input')?.focus(), 300);
+  }
+}
+
+function clearUnread(){
+  unreadCount = 0;
+  const badge = document.getElementById('chat-unread');
+  badge.classList.remove('show');
+  badge.textContent = '';
+}
+
+function addUnread(){
+  if(chatOpen) return;
+  unreadCount++;
+  const badge = document.getElementById('chat-unread');
+  badge.textContent = unreadCount;
+  badge.classList.add('show');
+  document.getElementById('chat-fab').classList.add('pulse');
+  setTimeout(()=>document.getElementById('chat-fab').classList.remove('pulse'), 5000);
+}
+
+// ─────────────────────────────────────────────────────────────
+// Mode switching
+// ─────────────────────────────────────────────────────────────
+function switchMode(mode){
+  chatMode = mode;
+  document.getElementById('btn-ai').classList.toggle('active', mode==='ai');
+  document.getElementById('btn-agent').classList.toggle('active', mode==='agent');
+  document.getElementById('chat-ai-view').style.display    = mode==='ai'    ? 'flex' : 'none';
+  document.getElementById('chat-agent-view').style.display = mode==='agent' ? 'flex' : 'none';
+  if(mode==='agent') checkAgentStatus();
+}
+
+// ─────────────────────────────────────────────────────────────
+// Agent availability check
+// ─────────────────────────────────────────────────────────────
+async function checkAgentStatus(){
+  // Using manual flag — replace with real Odoo availability API if available
+  // Odoo Live Chat availability endpoint: GET /im_livechat/available_for_me
+  agentOnline = CHAT_CONFIG.AGENT_ONLINE_MANUAL;
+
+  const dot    = document.getElementById('agent-dot');
+  const title  = document.getElementById('agent-status-title');
+  const sub    = document.getElementById('agent-status-sub');
+  const btn    = document.getElementById('connect-agent-btn');
+  const hdot   = document.getElementById('chat-status-dot');
+  const hstatus= document.getElementById('chat-header-status');
+
+  if(agentOnline){
+    dot.className   = 'dot dot-green';
+    title.textContent = 'Agents available now';
+    sub.textContent   = 'Average response under 2 minutes';
+    btn.textContent   = 'Connect to Live Agent →';
+    btn.disabled      = false;
+    hdot.className    = '';
+    hstatus.textContent = 'AI + Live agents available';
+    hstatus.className   = 'live';
+  } else {
+    dot.className   = 'dot dot-amber';
+    title.textContent = 'No agents online right now';
+    sub.textContent   = 'Leave a message — we\'ll call you back';
+    btn.textContent   = 'Leave a Message';
+    btn.disabled      = false;
+    hdot.className    = 'away';
+    hstatus.textContent = 'AI Assistant · 24/7';
+    hstatus.className   = '';
+  }
+}
+
+function connectToAgent(){
+  if(agentOnline){
+    // Open Odoo Live Chat widget or redirect to Odoo discuss
+    // If using Odoo Live Chat embed, trigger it here:
+    // window.LiveChat && window.LiveChat.open();
+    // Otherwise open a direct link:
+    const odooUrl = CHAT_CONFIG.ODOO_URL + '/web#action=mail.action_discuss';
+    // For a more seamless experience, open in a new tab:
+    addBotMessage('Connecting you now! A TRS specialist will join shortly. You can also reach us directly at 866-401-8600.', 'agent');
+    switchMode('ai');
+    setTimeout(()=>{ window.open('tel:8664018600'); }, 1200);
+    // Uncomment below if you have Odoo Live Chat embed configured:
+    // window.open(odooUrl, '_blank');
+  } else {
+    // Offline — collect contact info
+    addBotMessage('No worries! Leave your name and number and we\'ll call you back within the hour.', 'bot');
+    switchMode('ai');
+    setTimeout(()=>{
+      document.getElementById('chat-input').placeholder = 'Your name and phone number…';
+      document.getElementById('chat-input').focus();
+    }, 400);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Init chat with welcome message
+// ─────────────────────────────────────────────────────────────
+function initChat(){
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  addBotMessage(`${greeting}! 👋 I'm the TRS AI assistant. I can help with equipment questions, delivery info, pricing guidance, and more.\n\nWhat's your event about?`, 'bot');
+  renderQuickReplies(QUICK_REPLIES);
+}
+
+// ─────────────────────────────────────────────────────────────
+// Message rendering
+// ─────────────────────────────────────────────────────────────
+function addBotMessage(text, role='bot'){
+  const msgs = document.getElementById('chat-messages');
+  const wrap = document.createElement('div');
+  wrap.className = `msg ${role}`;
+  const avatar = role==='agent' ? '👤' : role==='user' ? '🙂' : '🎤';
+  const time = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  wrap.innerHTML = `
+    <div class="msg-avatar">${avatar}</div>
+    <div>
+      <div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>
+      <div class="msg-time">${time}</div>
+    </div>`;
+  msgs.appendChild(wrap);
+  msgs.scrollTop = msgs.scrollHeight;
+  if(role !== 'user' && !chatOpen) addUnread();
+}
+
+function renderQuickReplies(replies){
+  const qr = document.getElementById('chat-quick');
+  qr.innerHTML = '';
+  replies.forEach(r => {
+    const btn = document.createElement('button');
+    btn.className = 'qr-btn';
+    btn.textContent = r;
+    btn.onclick = () => { qr.innerHTML=''; handleUserInput(r); };
+    qr.appendChild(btn);
+  });
+}
+
+function showTyping(show){
+  isTyping = show;
+  document.getElementById('chat-typing').classList.toggle('show', show);
+  document.getElementById('chat-send').disabled = show;
+  const msgs = document.getElementById('chat-messages');
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+// ─────────────────────────────────────────────────────────────
+// Send message
+// ─────────────────────────────────────────────────────────────
+function chatKeydown(e){
+  if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendMessage(); }
+}
+
+function autoResize(el){
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 80) + 'px';
+}
+
+function sendMessage(){
+  const input = document.getElementById('chat-input');
+  const text  = input.value.trim();
+  if(!text || isTyping) return;
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('chat-quick').innerHTML = '';
+  handleUserInput(text);
+}
+
+function handleUserInput(text){
+  // Add user bubble
+  addBotMessage(text, 'user');
+  chatHistory.push({role:'user', content:text});
+
+  // Special intents
+  const lower = text.toLowerCase();
+  if(lower.includes('call') || lower.includes('phone') || lower.includes('speak') || lower.includes('human') || lower.includes('agent')){
+    showTyping(true);
+    setTimeout(()=>{
+      showTyping(false);
+      addBotMessage('Of course! You can reach a TRS specialist right now at 📞 **866-401-8600**, or I can check if an agent is available in chat.', 'bot');
+      renderQuickReplies(['Check agent availability','Keep chatting with AI']);
+    }, 700);
+    return;
+  }
+  if(lower.includes('quote') || lower.includes('price') || lower.includes('cost') || lower.includes('how much')){
+    showTyping(true);
+    setTimeout(()=>{
+      showTyping(false);
+      addBotMessage('Pricing depends on event size, duration, location, and equipment. The quickest way is to fill out our quote form on this page — we typically respond within a few hours!', 'bot');
+      renderQuickReplies(['Go to quote form','What info do you need?','Call me instead']);
+    }, 800);
+    if(lower.includes('go to quote')){
+      document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
+    }
+    return;
+  }
+  if(lower.includes('go to quote form')){
+    document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
+    addBotMessage('Scrolling you to the quote form now! 👆', 'bot');
+    return;
+  }
+  if(lower.includes('check agent')){
+    switchMode('agent');
+    return;
+  }
+
+  // Call Groq API
+  callGroq(text);
+}
+
+// ─────────────────────────────────────────────────────────────
+// Groq API call
+// ─────────────────────────────────────────────────────────────
+async function callGroq(userMessage){
+  showTyping(true);
+
+  // Build messages array for API
+  const messages = [
+    {role:'system', content: TRS_SYSTEM_PROMPT},
+    ...chatHistory.slice(-10), // last 10 turns for context
+  ];
+
+  try {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${CHAT_CONFIG.GROQ_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model:       CHAT_CONFIG.GROQ_MODEL,
+        messages:    messages,
+        max_tokens:  200,
+        temperature: 0.65,
+        stream:      false,
+      })
+    });
+
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      throw new Error(err?.error?.message || `API error ${res.status}`);
+    }
+
+    const data   = await res.json();
+    const reply  = data.choices?.[0]?.message?.content?.trim();
+
+    if(!reply) throw new Error('Empty response');
+
+    showTyping(false);
+    addBotMessage(reply, 'bot');
+    chatHistory.push({role:'assistant', content:reply});
+
+    // Smart follow-up quick replies based on response content
+    const lower = reply.toLowerCase();
+    const followUps = [];
+    if(lower.includes('quote')) followUps.push('Go to quote form');
+    if(lower.includes('call') || lower.includes('866')) followUps.push('Call now');
+    if(lower.includes('deliver')) followUps.push('Delivery details');
+    if(followUps.length === 0) followUps.push('Tell me more', 'Get a quote', 'Talk to an agent');
+    renderQuickReplies(followUps.slice(0,3));
+
+  } catch(err){
+    showTyping(false);
+    console.warn('[TRSAV Chat] Groq error:', err.message);
+
+    if(CHAT_CONFIG.GROQ_API_KEY === 'YOUR_GROQ_API_KEY_HERE'){
+      addBotMessage('Chat is not yet configured — please add your Groq API key. In the meantime, call us at 866-401-8600 or use the quote form below!', 'bot');
+    } else {
+      addBotMessage('Sorry, I\'m having a moment! You can reach our team directly at 📞 866-401-8600 — we\'re available 24/7.', 'bot');
+      renderQuickReplies(['Check agent availability','Use quote form']);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Init — check agent status on page load (after 2s)
+// ─────────────────────────────────────────────────────────────
+setTimeout(()=>{
+  checkAgentStatus();
+  // Proactive message after 45s if chat hasn't been opened
+  setTimeout(()=>{
+    if(!chatOpen && chatHistory.length === 0){
+      addUnread();
+    }
+  }, 45000);
+}, 2000);
+</script>
+<!-- ═══════════════════════════════════════════════════════════ -->
 </body>
 </html>
